@@ -1,0 +1,20 @@
+trailingComma: "es5"
+semi: true
+singleQuote: false
+arrowParens: always
+bracketSpacing: true
+quoteProps: as-needed
+htmlWhitespaceSensitivity: ignore
+
+importOrderParserPlugins:
+    - "typescript"
+    - "classProperties"
+    - "decorators-legacy"
+importOrder:
+    - "^@angular(/.*)?$"
+    - "^primeng(/.*)?$"
+    - <THIRD_PARTY_MODULES>
+    - "^@app(/.*)?$"
+    - "^(\\.).*$"
+importOrderSeparation: true
+importOrderSortSpecifiers: true

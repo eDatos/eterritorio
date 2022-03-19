@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <parent>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-starter-parent</artifactId>
+        <version>2.6.4</version>
+        <relativePath/>
+    </parent>
+
+    <groupId>es.gobcan.istac.edatos-territory</groupId>
+    <artifactId>edatos-territory</artifactId>
+    <version>0.0.1-SNAPSHOT</version>
+    <packaging>pom</packaging>
+
+    <name>eDatos Territory</name>
+    <description>Aplicación que muestra un listado de datasets disponibles para una localización concreta.</description>
+
+    <scm>
+        <url>https://git.arte-consultores.com/istac/edatos-territory</url>
+        <connection>scm:git:https://git.arte-consultores.com/istac/edatos-territory</connection>
+        <developerConnection>scm:git:https://git.arte-consultores.com/istac/edatos-territory</developerConnection>
+        <tag>HEAD</tag>
+    </scm>
+
+    <issueManagement>
+        <system>Jira</system>
+        <url>https://jira.arte-consultores.com/browse/EDATOS</url>
+    </issueManagement>
+
+    <distributionManagement>
+        <repository>
+            <id>arte-repository</id>
+            <name>Arte Repository - RELEASE</name>
+            <url>https://repository.arte-consultores.com/content/repositories/releases</url>
+        </repository>
+        <snapshotRepository>
+            <id>arte-repository</id>
+            <name>Arte Repository - SNAPSHOT</name>
+            <url>https://repository.arte-consultores.com/content/repositories/snapshots</url>
+        </snapshotRepository>
+    </distributionManagement>
+
+    <dependencyManagement>
+        <dependencies>
+            <dependency>
+                <groupId>es.gobcan.istac.edatos-territory</groupId>
+                <artifactId>edatos-territory-web</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>es.gobcan.istac.edatos-territory</groupId>
+                <artifactId>edatos-territory-js</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
+
+    <profiles>
+        <profile>
+            <id>dev</id>
+            <properties>
+                <spring.profiles.active>dev</spring.profiles.active>
+            </properties>
+            <activation>
+                <activeByDefault>true</activeByDefault>
+            </activation>
+            <modules>
+                <module>edatos-territory-web</module>
+            </modules>
+        </profile>
+
+        <profile>
+            <id>env</id>
+            <properties>
+                <spring.profiles.active>env</spring.profiles.active>
+            </properties>
+            <modules>
+                <module>edatos-territory-web</module>
+                <module>edatos-territory-js</module>
+            </modules>
+        </profile>
+    </profiles>
+
+</project>
