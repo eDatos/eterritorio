@@ -1,1 +1,2 @@
-export * from "./app-properties";
+import * as properties from "./properties.json";
+export { properties };
