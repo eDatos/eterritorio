@@ -18,7 +18,6 @@
     <properties>
         <node.version>v16.14.0</node.version>
         <frontend-maven-plugin.version>1.12.1</frontend-maven-plugin.version>
-        <static-files.path>${project.build.directory}/classes/META-INF/resources</static-files.path>
     </properties>
 
     <scm>
@@ -50,12 +49,13 @@
         <resources>
             <resource>
                 <!--Includes all the resources in the JAR file-->
-                <directory>${static-files.path}</directory>
-                <targetPath>META-INF/resources</targetPath>
+                <directory>dist/edatos-territory</directory>
+                <targetPath>static</targetPath>
             </resource>
         </resources>
         <plugins>
             <plugin>
+                <!-- clean the dist directory used by Angular -->
                 <artifactId>maven-clean-plugin</artifactId>
                 <configuration>
                     <filesets>
@@ -99,28 +99,6 @@
                         <phase>generate-resources</phase>
                         <configuration>
                             <arguments>run build:prod</arguments>
-                        </configuration>
-                    </execution>
-                </executions>
-            </plugin>
-            <plugin>
-                <!--Copy the dist folder into target/META-INF/resources. `target` usually is the project build directory-->
-                <artifactId>maven-resources-plugin</artifactId>
-                <executions>
-                    <execution>
-                        <id>copy-resources</id>
-                        <phase>generate-resources</phase>
-                        <goals>
-                            <goal>copy-resources</goal>
-                        </goals>
-                        <configuration>
-                            <outputDirectory>${static-files.path}</outputDirectory>
-                            <resources>
-                                <resource>
-                                    <directory>dist/${parent.artifactId}</directory>
-                                    <filtering>false</filtering>
-                                </resource>
-                            </resources>
                         </configuration>
                     </execution>
                 </executions>
