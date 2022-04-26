@@ -4,7 +4,7 @@ import { Injectable } from "@angular/core";
 import { Observable } from "rxjs";
 
 import { DatasetsDto } from "@app/core/model";
-import { ConfigService, instantiate } from "@app/core/service";
+import { MetadataService, instantiate } from "@app/core/service";
 
 @Injectable({
     providedIn: "root",
@@ -12,7 +12,7 @@ import { ConfigService, instantiate } from "@app/core/service";
 export class DatasetService {
     public static REST_URL: string;
 
-    constructor(private http: HttpClient, private configService: ConfigService) {
+    constructor(private http: HttpClient, private configService: MetadataService) {
         DatasetService.REST_URL = this.configService.getStatisticalResourcesExternalApiUrl() + "/v1.0";
     }
 

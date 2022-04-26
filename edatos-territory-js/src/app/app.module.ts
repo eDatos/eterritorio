@@ -12,7 +12,7 @@ import { TranslateHttpLoader } from "@ngx-translate/http-loader";
 import { AppRoutingModule } from "@app/app-routing.module";
 import { AppComponent } from "@app/app.component";
 import { AVAILABLE_LANGS, DEFAULT_LANG } from "@app/app.constants";
-import { ConfigService } from "@app/core/service";
+import { MetadataService } from "@app/core/service";
 import { LayoutModule } from "@app/modules/layout";
 import { SearchModule } from "@app/modules/search";
 
@@ -57,8 +57,8 @@ export function configureTranslationService(translateService: TranslateService):
         },
         {
             provide: APP_INITIALIZER,
-            useFactory: (configService: ConfigService) => () => configService.init(),
-            deps: [ConfigService],
+            useFactory: (ms: MetadataService) => () => ms.init(),
+            deps: [MetadataService],
             multi: true,
         },
     ],

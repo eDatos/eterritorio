@@ -1,2 +1,1 @@
-import * as properties from "./properties.json";
-export { properties };
+export * from './properties.model';
