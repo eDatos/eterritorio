@@ -17,13 +17,9 @@ export class HtmlService {
     constructor(private http: HttpClient, private configService: ConfigService) {}
 
     getHeaderHtml(): Observable<string> {
-        return this.configService.getLayoutHeaderUrl().pipe(
-            switchMap((url) =>
-                this.http.get(url, {
-                    headers: { "Content-Type": "text/plain" },
-                    responseType: "text",
-                })
-            )
-        );
+        return this.http.get(this.configService.getLayoutHeaderUrl(), {
+            headers: { "Content-Type": "text/plain" },
+            responseType: "text",
+        });
     }
 }

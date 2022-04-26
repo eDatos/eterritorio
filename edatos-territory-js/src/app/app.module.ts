@@ -1,12 +1,7 @@
 import { HttpClient, HttpClientModule } from "@angular/common/http";
 import { APP_INITIALIZER, NgModule } from "@angular/core";
-import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 import { BrowserModule } from "@angular/platform-browser";
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
-
-import { AutoCompleteModule } from "primeng/autocomplete";
-import { InputTextModule } from "primeng/inputtext";
-import { SelectButtonModule } from "primeng/selectbutton";
 
 import { LoadingBarModule } from "@ngx-loading-bar/core";
 import { LoadingBarHttpClientModule } from "@ngx-loading-bar/http-client";
@@ -17,6 +12,7 @@ import { TranslateHttpLoader } from "@ngx-translate/http-loader";
 import { AppRoutingModule } from "@app/app-routing.module";
 import { AppComponent } from "@app/app.component";
 import { AVAILABLE_LANGS, DEFAULT_LANG } from "@app/app.constants";
+import { ConfigService } from "@app/core/service";
 import { LayoutModule } from "@app/modules/layout";
 import { SearchModule } from "@app/modules/search";
 
@@ -57,6 +53,12 @@ export function configureTranslationService(translateService: TranslateService):
             provide: APP_INITIALIZER,
             useFactory: configureTranslationService,
             deps: [TranslateService],
+            multi: true,
+        },
+        {
+            provide: APP_INITIALIZER,
+            useFactory: (configService: ConfigService) => () => configService.init(),
+            deps: [ConfigService],
             multi: true,
         },
     ],
