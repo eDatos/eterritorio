@@ -1,1 +1,1 @@
-export * from "./app-properties";
+export * from './properties.model';

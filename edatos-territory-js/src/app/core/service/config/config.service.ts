@@ -1,18 +1,19 @@
+import { HttpClient } from "@angular/common/http";
 import { Injectable } from "@angular/core";
 
-import { AppProperties } from "@app/core/config";
+import { Observable } from "rxjs";
+
+import { Properties } from "@app/core/config";
 
 @Injectable({
     providedIn: "root",
 })
 export class ConfigService {
-    constructor() {}
+    private static PROPERTIES_FILE_URL = "assets/properties.json";
 
-    getProperties(): AppProperties {
-        return ConfigService.window.configuration;
-    }
+    constructor(private http: HttpClient) {}
 
-    private static get window(): any {
-        return window;
+    getProperties(): Observable<Properties> {
+        return this.http.get<Properties>(ConfigService.PROPERTIES_FILE_URL);
     }
 }

@@ -4,15 +4,17 @@ import { Injectable } from "@angular/core";
 import { Observable } from "rxjs";
 
 import { DatasetsDto } from "@app/core/model";
-import { instantiate } from "@app/core/service";
+import { MetadataService, instantiate } from "@app/core/service";
 
 @Injectable({
     providedIn: "root",
 })
 export class DatasetService {
-    public static REST_URL = "statistical-resources/v1.0";
+    public static REST_URL: string;
 
-    constructor(public http: HttpClient) {}
+    constructor(private http: HttpClient, private configService: MetadataService) {
+        DatasetService.REST_URL = this.configService.getStatisticalResourcesExternalApiUrl() + "/v1.0";
+    }
 
     getAllDatasets(): Observable<DatasetsDto> {
         const headers = { "Content-Type": "application/json" };

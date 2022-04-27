@@ -3,6 +3,7 @@ import { Type } from "class-transformer";
 export enum Kind {
     DATASET = "statisticalResources#dataset",
     DATASETS = "statisticalResources#datasets",
+    PROPERTY = "commonMetadata#property",
 }
 
 export class SelfLink {

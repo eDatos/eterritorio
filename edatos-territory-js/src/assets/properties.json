@@ -1,0 +1,17 @@
+{
+    "endpoints": {
+        "cmetadata": {
+            "url": "https://estadisticas.arte-consultores.com/cmetadata/v1.0"
+        }
+    },
+    "keys": {
+        "layout": {
+            "header": "metamac.app.style.header.url"
+        },
+        "statisticalResources": {
+            "rest": {
+                "external": "metamac.statistical_resources.rest.external"
+            }
+        }
+    }
+}
