@@ -1,3 +1,2 @@
-<a [href]="url">
-    <h3>{{ title }}</h3>
-</a>
+<h3>{{ dataset.name.get(lang) }}</h3> <!--TODO: set default lang-->
+<a [href]="getVisualizerUrl(dataset.id)" class="dataset-link"></a>

@@ -20,17 +20,16 @@ export class InternationalString {
     @Type(() => LocalisedString)
     public text!: LocalisedString[];
 
+    /**
+     * Returns the value in the specified language.
+     * @param lang Language code according to ISO 639‑1.
+     */
     get(lang: string): string | null {
-        return this.text?.find(elem => elem.lang.toLowerCase() === lang.toLowerCase())?.value || null;
+        return this.text?.find((elem) => elem.lang.toLowerCase() === lang.toLowerCase())?.value || null;
     }
 }
 
 export class LocalisedString {
-    public value: string;
-    public lang: string;
-
-    constructor(lang: string, value: string) {
-        this.lang = lang;
-        this.value = value;
-    }
+    public lang!: string;
+    public value!: string | null;
 }
