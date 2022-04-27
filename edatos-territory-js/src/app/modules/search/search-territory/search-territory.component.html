@@ -1,6 +1,8 @@
-<input type="text" pInputText [(ngModel)]="userSearch" (keyup.enter)="search()" />
+<app-territory-autocomplete (searchEvent)="search($event)"></app-territory-autocomplete>
+
 <section *ngIf="datasetDto">
     <span>Resultados: {{ datasetDto.total }}</span>
+
     <ng-container *ngFor="let dataset of datasetDto.dataset">
         <app-dataset-card [title]="dataset.name.get('es')!" [url]="dataset.selfLink.href"></app-dataset-card>
     </ng-container>

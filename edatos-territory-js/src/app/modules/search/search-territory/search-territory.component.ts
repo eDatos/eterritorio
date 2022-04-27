@@ -9,13 +9,12 @@ import { DatasetService } from "@app/core/service";
     styleUrls: ["./search-territory.component.scss"],
 })
 export class SearchTerritoryComponent {
-    public userSearch: string = "";
     public datasetDto?: DatasetsDto;
 
     constructor(private datasetService: DatasetService) {}
 
-    search() {
-        this.datasetService.getDatasetsByTerritory(this.userSearch).subscribe((dto) => {
+    search(territory: string) {
+        this.datasetService.getDatasetsByTerritory(territory).subscribe((dto) => {
             this.datasetDto = dto;
         });
     }
