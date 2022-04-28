@@ -13,5 +13,10 @@ export interface Properties {
                 external: string;
             };
         };
+        visualizer: {
+            web: {
+                external: string;
+            };
+        };
     };
 }

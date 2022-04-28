@@ -11,6 +11,13 @@
 
 .card__title {
     margin: 0;
+
+    a {
+        text-decoration: none;
+        &:hover {
+            text-decoration: underline;
+        }
+    }
 }
 
 .card__footer {

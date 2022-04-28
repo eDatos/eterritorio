@@ -12,6 +12,11 @@
             "rest": {
                 "external": "metamac.statistical_resources.rest.external"
             }
+        },
+        "visualizer": {
+            "web": {
+                "external": "metamac.portal.web.external.visualizer"
+            }
         }
     }
 }

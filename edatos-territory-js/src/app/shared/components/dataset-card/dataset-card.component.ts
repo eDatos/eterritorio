@@ -3,6 +3,7 @@ import { Component, Input, OnInit } from "@angular/core";
 import { TranslateService } from "@ngx-translate/core";
 
 import { Dataset } from "@app/core/model";
+import { MetadataService } from "@app/core/service";
 
 @Component({
     selector: "app-dataset-card",
@@ -11,18 +12,27 @@ import { Dataset } from "@app/core/model";
 })
 export class DatasetCardComponent implements OnInit {
     @Input()
-    public dataset!: Dataset;
-    public lang = this.translateService.currentLang;
+    dataset!: Dataset;
 
-    constructor(private translateService: TranslateService) {}
+    lang = this.translateService.currentLang;
+    title?: string | null;
+    visualizerUrl?: string;
+
+    constructor(private translateService: TranslateService, private metadataService: MetadataService) {}
 
     ngOnInit(): void {
         this.translateService.onLangChange.subscribe((langChangeEvent) => {
             this.lang = langChangeEvent.lang;
         });
+        this.init();
     }
 
-    getVisualizerUrl(datasetId: string): string {
-        return `https://estadisticas.arte-consultores.com/istac/visualizer/data.html?agencyId=ISTAC&resourceId=${datasetId}&version=~latest&resourceType=dataset#visualization/table`;
+    init() {
+        this.title = this.dataset.getName(this.lang);
+        this.visualizerUrl = this.getVisualizerUrl();
+    }
+
+    getVisualizerUrl(): string {
+        return `${this.metadataService.getVisualizerWebUrl()}/data.html?agencyId=ISTAC&resourceId=${this.dataset?.id}&version=~latest&resourceType=dataset#visualization/table`;
     }
 }

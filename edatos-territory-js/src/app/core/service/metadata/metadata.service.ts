@@ -38,6 +38,7 @@ export class MetadataService {
 
             const properties$ = {
                 statisticalResourcesExternalApiUrl: this.requestKeyValue(props.keys.statisticalResources.rest.external),
+                visualizerWebUrl: this.requestKeyValue(props.keys.visualizer.web.external),
                 layoutHeaderUrl: this.requestKeyValue(props.keys.layout.header),
             };
 
@@ -69,5 +70,9 @@ export class MetadataService {
 
     getStatisticalResourcesExternalApiUrl(): string {
         return this.properties.statisticalResourcesExternalApiUrl;
+    }
+
+    getVisualizerWebUrl(): string {
+        return this.properties.visualizerWebUrl;
     }
 }
