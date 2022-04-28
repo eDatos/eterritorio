@@ -1,1 +1,1 @@
-<p-autoComplete [formControl]="name" [suggestions]="suggestions" (completeMethod)="complete($event)" (keyup.enter)="search()"></p-autoComplete>
+<p-autoComplete [formControl]="name" [suggestions]="suggestions" (completeMethod)="complete($event)" (keyup.enter)="search()" (onSelect)="search()"></p-autoComplete>

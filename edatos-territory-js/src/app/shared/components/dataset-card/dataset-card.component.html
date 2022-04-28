@@ -1,2 +1,13 @@
-<h3>{{ dataset.name.get(lang) }}</h3> <!--TODO: set default lang-->
-<a [href]="getVisualizerUrl(dataset.id)" class="dataset-link"></a>
+<div class="card">
+    <div class="card__header">
+        <h3 class="card__title">
+            {{ dataset.getName(lang) }}
+        </h3>
+    </div>
+    <div class="card__body">
+
+    </div>
+<!--    <div class="card__footer">-->
+<!--        <a [href]="getVisualizerUrl(dataset.id)">Ver dataset</a>-->
+<!--    </div>-->
+</div>

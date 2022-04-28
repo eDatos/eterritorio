@@ -1,15 +1,16 @@
-<header class="search-header">
-    <h1 class="search-header-title">Búsqueda de datasets por territorios</h1>
-    <app-territory-autocomplete
-        class="search-input-autocomplete"
-        (searchEvent)="search($event)"
-    ></app-territory-autocomplete>
-</header>
+<div class="search">
+    <header class="search__header">
+        <h1 class="search__header-title">Búsqueda de datasets por territorios</h1>
+        <app-territory-autocomplete
+            class="search__input-autocomplete"
+            (searchEvent)="search($event)"
+        ></app-territory-autocomplete>
+    </header>
 
-<div class="search-body">
-    <section class="search-results" *ngIf="datasetDto">
-        <span>Resultados: {{ datasetDto.total }}</span>
-
-        <app-dataset-card *ngFor="let dataset of datasetDto.dataset" [dataset]="dataset"></app-dataset-card>
-    </section>
+    <div class="search__body">
+        <div class="search__results" *ngIf="datasetDto">
+            <span>Resultados: {{ datasetDto.total }}</span>
+            <app-dataset-card class="search__results--item" *ngFor="let dataset of datasetDto.dataset" [dataset]="dataset"></app-dataset-card>
+        </div>
+    </div>
 </div>

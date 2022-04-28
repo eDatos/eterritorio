@@ -17,8 +17,27 @@ export class SelfLink {
 }
 
 export class InternationalString {
+    constructor();
+    constructor(lang: string, value: string);
+    constructor(locStr: LocalisedString);
+    constructor(locStrArray: LocalisedString[]);
+
+    constructor(elem?: string | LocalisedString | LocalisedString[], value?: string) {
+        if (elem == undefined && value == undefined) {
+            this.text = [];
+        } else if (typeof elem === "string" && value != undefined) {
+            this.text = [new LocalisedString(elem, value)];
+        } else if (elem instanceof LocalisedString) {
+            this.text = [elem];
+        } else if (Array.isArray(elem)) {
+            this.text = elem;
+        } else {
+            throw new Error("Bad initialization of InternationalString, check available constructor signature options");
+        }
+    }
+
     @Type(() => LocalisedString)
-    public text!: LocalisedString[];
+    public text: LocalisedString[];
 
     /**
      * Returns the value in the specified language.
@@ -30,6 +49,11 @@ export class InternationalString {
 }
 
 export class LocalisedString {
-    public lang!: string;
-    public value!: string | null;
+    public lang: string;
+    public value: string | null;
+
+    constructor(lang: string, value: string | null) {
+        this.lang = lang;
+        this.value = value;
+    }
 }

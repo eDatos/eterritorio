@@ -1,12 +1,43 @@
-.search-header {
+.search {
+    overflow-y: visible;
+}
+
+.search__header {
     padding: 2.5em 1em;
 
-    .search-header-title {
+    .search__header-title {
         margin-top: 0;
         font-weight: 900;
     }
 }
 
-.search-results {
+.search__body {
+    margin: 1em;
+}
 
+.search__results {
+    display: flex;
+    flex-direction: column;
+
+    &--item {
+        margin-top: 1em;
+    }
+}
+
+@media (min-width: 600px) {
+    .search {
+        margin: 0 5em;
+    }
+}
+
+@media (min-width: 1200px) {
+    .search {
+        margin: 0 15em;
+    }
+}
+
+@media (min-width: 1700px) {
+    .search {
+        margin: 0 30em;
+    }
 }
