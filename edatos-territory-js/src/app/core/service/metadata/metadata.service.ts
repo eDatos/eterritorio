@@ -1,20 +1,7 @@
 import { HttpClient } from "@angular/common/http";
 import { Injectable } from "@angular/core";
 
-import {
-    Observable,
-    catchError,
-    forkJoin,
-    map,
-    of,
-    retry,
-    shareReplay,
-    tap,
-    switchAll,
-    flatMap,
-    mergeMap,
-    switchMap,
-} from "rxjs";
+import { Observable, catchError, forkJoin, map, of, retry, shareReplay, switchMap, tap } from "rxjs";
 
 import { MetadataPropertyDto } from "@app/core/model";
 import { instantiate } from "@app/core/service";
@@ -32,19 +19,23 @@ export class MetadataService {
     init(): Observable<any> {
         console.log("Loading app properties...");
 
-        return this.configService.getProperties().pipe(switchMap(props => {
-            console.log("Properties file loaded");
-            this.commonMetadataUrl = props.endpoints.cmetadata.url;
+        return this.configService.getProperties().pipe(
+            switchMap((props) => {
+                console.log("Properties file loaded");
+                this.commonMetadataUrl = props.endpoints.cmetadata.url;
 
-            const properties$ = {
-                statisticalResourcesExternalApiUrl: this.requestKeyValue(props.keys.statisticalResources.rest.external),
-                visualizerWebUrl: this.requestKeyValue(props.keys.visualizer.web.external),
-                layoutHeaderUrl: this.requestKeyValue(props.keys.layout.header),
-            };
+                const properties$ = {
+                    statisticalResourcesExternalApiUrl: this.requestKeyValue(
+                        props.keys.statisticalResources.rest.external
+                    ),
+                    visualizerWebUrl: this.requestKeyValue(props.keys.visualizer.web.external),
+                    layoutHeaderUrl: this.requestKeyValue(props.keys.layout.header),
+                };
 
-            // load all properties at the same time
-            return forkJoin(properties$).pipe(tap((res) => (this.properties = res)));
-        }));
+                // load all properties at the same time
+                return forkJoin(properties$).pipe(tap((res) => (this.properties = res)));
+            })
+        );
     }
 
     requestKeyValue(key: string): Observable<string | Error> {
