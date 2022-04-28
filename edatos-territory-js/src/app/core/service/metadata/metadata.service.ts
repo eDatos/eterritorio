@@ -30,6 +30,7 @@ export class MetadataService {
                     ),
                     visualizerWebUrl: this.requestKeyValue(props.keys.visualizer.web.external),
                     layoutHeaderUrl: this.requestKeyValue(props.keys.layout.header),
+                    layoutFooterUrl: this.requestKeyValue(props.keys.layout.footer),
                 };
 
                 // load all properties at the same time
@@ -57,6 +58,10 @@ export class MetadataService {
 
     getLayoutHeaderUrl(): string {
         return this.properties.layoutHeaderUrl;
+    }
+
+    getLayoutFooterUrl(): string {
+        return this.properties.layoutFooterUrl;
     }
 
     getStatisticalResourcesExternalApiUrl(): string {
