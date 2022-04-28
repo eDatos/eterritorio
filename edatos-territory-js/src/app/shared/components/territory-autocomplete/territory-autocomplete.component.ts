@@ -1,5 +1,4 @@
-import { Component, EventEmitter, Output } from "@angular/core";
-import { FormControl } from "@angular/forms";
+import { Component, EventEmitter, Input, Output } from "@angular/core";
 
 @Component({
     selector: "app-territory-autocomplete",
@@ -7,19 +6,28 @@ import { FormControl } from "@angular/forms";
     styleUrls: ["./territory-autocomplete.component.scss"],
 })
 export class TerritoryAutocompleteComponent {
-    name = new FormControl("");
     suggestions: string[] = [];
+
+    @Input()
+    name = "";
+
+    @Output()
+    nameChange = new EventEmitter<string>();
 
     @Output()
     searchEvent = new EventEmitter<string>();
 
-    private territories = ["Canarias", "Tenerife", "Madrid", "Albacete", "Sevilla"];
+    private territories = ["Canarias", "Tenerife", "Madrid", "Albacete", "Sevilla"]; // TODO: Load from file.
 
     complete(event: { originalEvent: InputEvent; query: string }) {
         this.suggestions = this.territories.filter((territory) => new RegExp(event.query, "gi").test(territory));
     }
 
     search() {
-        this.searchEvent.emit(this.name.value);
+        this.searchEvent.emit(this.name);
+    }
+
+    onNameChange(_event: any) {
+        this.nameChange.emit(this.name);
     }
 }
