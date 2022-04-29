@@ -1,7 +1,27 @@
-<input type="text" pInputText [(ngModel)]="userSearch" (keyup.enter)="search()" />
-<section *ngIf="datasetDto">
-    <span>Resultados: {{ datasetDto.total }}</span>
-    <ng-container *ngFor="let dataset of datasetDto.dataset">
-        <app-dataset-card [title]="dataset.name.get('es')!" [url]="dataset.selfLink.href"></app-dataset-card>
-    </ng-container>
-</section>
+<div class="search">
+    <header class="search__header">
+        <h1 class="search__header-title">Búsqueda de datasets por territorios</h1>
+        <app-territory-autocomplete
+            class="search__input-autocomplete"
+            [(name)]="territoryName"
+            (searchEvent)="search($event)"
+        ></app-territory-autocomplete>
+    </header>
+
+    <div class="search__body">
+        <div class="search__results" *ngIf="datasetDto">
+            <span>Resultados: {{ datasetDto.total }}</span>
+            <app-dataset-card
+                class="search__results--item"
+                *ngFor="let dataset of datasetDto.dataset"
+                [dataset]="dataset"
+            ></app-dataset-card>
+            <p-paginator
+                [rows]="rows"
+                [totalRecords]="datasetDto.total"
+                [rowsPerPageOptions]="rowsPerPage"
+                (onPageChange)="paginate($event)"
+            ></p-paginator>
+        </div>
+    </div>
+</div>

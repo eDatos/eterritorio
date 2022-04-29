@@ -1,5 +1,20 @@
-<a [href]="url">
-    <section>
-        <h3>{{ title }}</h3>
-    </section>
-</a>
+<div class="card">
+    <div class="card__header">
+        <h3 class="card__title">
+            <a target="_blank" [href]="visualizerUrl">{{ title }}</a>
+        </h3>
+    </div>
+    <div class="card__body">
+        <span *ngIf="description; else loading" class="card__description">
+            {{ description | stripHtml }}
+        </span>
+        <ng-template #loading>
+            <span>
+                <p-progressSpinner></p-progressSpinner>
+            </span>
+        </ng-template>
+    </div>
+<!--    <div class="card__footer">-->
+<!--        -->
+<!--    </div>-->
+</div>

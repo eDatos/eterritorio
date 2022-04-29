@@ -6,11 +6,17 @@
     },
     "keys": {
         "layout": {
-            "header": "metamac.app.style.header.url"
+            "header": "metamac.app.style.header.url",
+            "footer": "metamac.app.style.footer.url"
         },
         "statisticalResources": {
             "rest": {
                 "external": "metamac.statistical_resources.rest.external"
+            }
+        },
+        "visualizer": {
+            "web": {
+                "external": "metamac.portal.web.external.visualizer"
             }
         }
     }

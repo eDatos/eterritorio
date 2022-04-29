@@ -17,4 +17,11 @@ export class HtmlService {
             responseType: "text",
         });
     }
+
+    getFooterHtml(): Observable<string> {
+        return this.http.get(this.configService.getLayoutFooterUrl(), {
+            headers: { "Content-Type": "text/plain" },
+            responseType: "text",
+        });
+    }
 }

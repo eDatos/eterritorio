@@ -1,4 +1,9 @@
-import { Component, OnInit, Input } from "@angular/core";
+import { Component, Input, OnInit } from "@angular/core";
+
+import { TranslateService } from "@ngx-translate/core";
+
+import { Dataset } from "@app/core/model";
+import { DatasetService, MetadataService } from "@app/core/service";
 
 @Component({
     selector: "app-dataset-card",
@@ -7,10 +12,38 @@ import { Component, OnInit, Input } from "@angular/core";
 })
 export class DatasetCardComponent implements OnInit {
     @Input()
-    public title: string = "";
+    dataset!: Dataset;
 
-    @Input()
-    public url: string = "";
+    lang = this.translateService.currentLang;
+    title?: string | null;
+    visualizerUrl?: string;
+    description: string | null = "";
 
-    ngOnInit(): void {}
+    constructor(
+        private translateService: TranslateService,
+        private metadataService: MetadataService,
+        private datasetService: DatasetService
+    ) {}
+
+    ngOnInit(): void {
+        this.translateService.onLangChange.subscribe((langChangeEvent) => {
+            this.lang = langChangeEvent.lang;
+        });
+        this.init();
+    }
+
+    init() {
+        this.title = this.dataset.getName(this.lang);
+        this.visualizerUrl = this.getVisualizerUrl();
+
+        this.datasetService.getDatasetByUrl(this.dataset.selfLink.href).subscribe((dataset) => {
+            this.description = dataset.description.get(this.lang);
+        });
+    }
+
+    getVisualizerUrl(): string {
+        return `${this.metadataService.getVisualizerWebUrl()}/data.html?agencyId=ISTAC&resourceId=${
+            this.dataset?.id
+        }&version=~latest&resourceType=dataset#visualization/table`;
+    }
 }

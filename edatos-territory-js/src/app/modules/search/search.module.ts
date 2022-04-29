@@ -1,13 +1,13 @@
 import { CommonModule } from "@angular/common";
 import { NgModule } from "@angular/core";
 
+import { PaginatorModule } from "primeng/paginator";
+
 import { SearchTerritoryComponent } from "@app/modules/search/search-territory";
 import { SharedModule } from "@app/shared";
-import { InputTextModule } from "primeng/inputtext";
-import { FormsModule } from "@angular/forms";
 
 @NgModule({
     declarations: [SearchTerritoryComponent],
-    imports: [CommonModule, SharedModule, InputTextModule, FormsModule],
+    imports: [CommonModule, SharedModule, PaginatorModule],
 })
 export class SearchModule {}

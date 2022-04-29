@@ -13,6 +13,15 @@ export class Dataset {
     public name!: InternationalString;
 
     public kind = Kind.DATASET;
+
+    getName(lang: string): string | null {
+        return this.name.get(lang);
+    }
+}
+
+export class DatasetWithDescription extends Dataset {
+    @Type(() => InternationalString)
+    public description!: InternationalString;
 }
 
 export class DatasetsDto {
