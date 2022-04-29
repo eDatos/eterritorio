@@ -5,7 +5,14 @@
         </h3>
     </div>
     <div class="card__body">
-
+        <span *ngIf="description; else loading" class="card__description">
+            {{ description | stripHtml }}
+        </span>
+        <ng-template #loading>
+            <span>
+                <p-progressSpinner></p-progressSpinner>
+            </span>
+        </ng-template>
     </div>
 <!--    <div class="card__footer">-->
 <!--        -->

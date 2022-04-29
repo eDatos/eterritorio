@@ -2,6 +2,7 @@ import { Component } from "@angular/core";
 
 import { DatasetsDto } from "@app/core/model";
 import { DatasetService } from "@app/core/service";
+import { Title } from "@angular/platform-browser";
 
 interface PageChangeEvent {
     first: number;
@@ -21,9 +22,10 @@ export class SearchTerritoryComponent {
     datasetDto?: DatasetsDto;
     territoryName = "";
 
-    constructor(private datasetService: DatasetService) {}
+    constructor(private datasetService: DatasetService, private title: Title) {}
 
     search(territoryName: string, offset = 0, limit = this.rows) {
+        this.title.setTitle("Datasets: " + territoryName);
         this.datasetService.getDatasetsByQuery({ territoryName: territoryName, offset, limit }).subscribe((dto) => {
             this.datasetDto = dto;
         });

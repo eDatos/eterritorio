@@ -19,6 +19,11 @@ export class Dataset {
     }
 }
 
+export class DatasetWithDescription extends Dataset {
+    @Type(() => InternationalString)
+    public description!: InternationalString;
+}
+
 export class DatasetsDto {
     @Type(() => Dataset)
     public dataset!: Dataset[];

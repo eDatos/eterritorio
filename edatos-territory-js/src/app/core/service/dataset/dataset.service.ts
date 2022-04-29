@@ -3,7 +3,7 @@ import { Injectable } from "@angular/core";
 
 import { Observable } from "rxjs";
 
-import { DatasetsDto } from "@app/core/model";
+import { DatasetsDto, DatasetWithDescription } from "@app/core/model";
 import { MetadataService, instantiate } from "@app/core/service";
 
 interface DatasetQuery {
@@ -39,5 +39,11 @@ export class DatasetService {
         const headers = { "Content-Type": "application/json" };
         const url = `${DatasetService.REST_URL}/datasets?query=GEOGRAPHIC_COVERAGE_TITLE ilike '${name}' and is_last_version eq 'true'&limit=${limit}&offset=${offset}`;
         return this.http.get(url, { headers }).pipe(instantiate(DatasetsDto));
+    }
+
+    getDatasetByUrl(url: string): Observable<DatasetWithDescription> {
+        const headers = { "Content-Type": "application/json" };
+        url += `?fields=-data,-metadata`;
+        return this.http.get(url, { headers }).pipe(instantiate(DatasetWithDescription));
     }
 }
