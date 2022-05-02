@@ -97,7 +97,16 @@
                         "assets": ["src/favicon.ico", "src/assets"],
                         "styles": ["src/styles.scss"],
                         "scripts": []
-                    }
+                    },
+                    "configurations": {
+                        "production": {
+                            "karmaConfig": "karma.conf.prod.js"
+                        },
+                        "development": {
+                            "karmaConfig": "karma.conf.js"
+                        }
+                    },
+                    "defaultConfiguration": "production"
                 },
                 "lint": {
                     "builder": "@angular-eslint/builder:lint",
