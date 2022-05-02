@@ -6,6 +6,9 @@
     </div>
     <div class="card__body">
         <span *ngIf="description; else loading" class="card__description">
+            <!--TODO(EDATOS-3600): Should the description be displayed? If the answer is yes,
+            should be formatted as-is (with the HTML) or plain text?
+            See discussion at https://git.arte-consultores.com/istac/edatos-territory/-/merge_requests/2#note_42301-->
             {{ description | stripHtml }}
         </span>
         <ng-template #loading>
@@ -14,7 +17,7 @@
             </span>
         </ng-template>
     </div>
-<!--    <div class="card__footer">-->
-<!--        -->
-<!--    </div>-->
+    <div class="card__footer">
+        <!--Empty, for now.-->
+    </div>
 </div>
