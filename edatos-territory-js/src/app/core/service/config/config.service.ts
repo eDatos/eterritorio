@@ -9,10 +9,15 @@ import { Properties } from "@app/core/config";
     providedIn: "root",
 })
 export class ConfigService {
-    private static PROPERTIES_FILE_URL = "assets/properties.json";
+    static PROPERTIES_FILE_URL = "assets/properties.json";
 
     constructor(private http: HttpClient) {}
 
+    /**
+     * Request to get the app properties.
+     * @return object of properties.
+     * @see ConfigService.PROPERTIES_FILE_URL
+     */
     getProperties(): Observable<Properties> {
         return this.http.get<Properties>(ConfigService.PROPERTIES_FILE_URL);
     }
