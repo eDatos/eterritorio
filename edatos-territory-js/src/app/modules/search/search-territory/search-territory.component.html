@@ -4,7 +4,7 @@
         <app-territory-autocomplete
             class="search__input-autocomplete"
             [(name)]="territoryName"
-            (searchEvent)="search($event)"
+            (searchEvent)="search({ territoryName: $event })"
         ></app-territory-autocomplete>
     </header>
 
@@ -17,9 +17,10 @@
                 [dataset]="dataset"
             ></app-dataset-card>
             <p-paginator
-                [rows]="rows"
+                [rows]="limit"
+                [first]="offset"
                 [totalRecords]="datasetDto.total"
-                [rowsPerPageOptions]="rowsPerPage"
+                [rowsPerPageOptions]="ROWS_PER_PAGE"
                 (onPageChange)="paginate($event)"
             ></p-paginator>
         </div>
