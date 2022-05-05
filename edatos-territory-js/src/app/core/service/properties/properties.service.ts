@@ -14,9 +14,11 @@ import { ConfigService } from "@app/core/service/config/config.service";
 @Injectable({
     providedIn: "root",
 })
-export class MetadataService {
+export class PropertiesService {
     private properties: any;
+
     private commonMetadataUrl!: string;
+    private territoryNutsCode!: string;
 
     constructor(private http: HttpClient, private configService: ConfigService) {}
 
@@ -42,23 +44,24 @@ export class MetadataService {
             switchMap((props) => {
                 console.log("Properties file loaded");
                 this.commonMetadataUrl = props.endpoints.cmetadata.url;
+                this.territoryNutsCode = props.config.territoryNutsCode;
 
-                const properties$ = {
-                    statisticalResourcesExternalApiUrl: this.requestKeyValue(
+                const metadataProperties$ = {
+                    statisticalResourcesExternalApiUrl: this.requestMetadataKeyValue(
                         props.keys.statisticalResources.rest.external
                     ),
-                    visualizerWebUrl: this.requestKeyValue(props.keys.visualizer.web.external),
-                    layoutHeaderUrl: this.requestKeyValue(props.keys.layout.header),
-                    layoutFooterUrl: this.requestKeyValue(props.keys.layout.footer),
+                    visualizerWebUrl: this.requestMetadataKeyValue(props.keys.visualizer.web.external),
+                    layoutHeaderUrl: this.requestMetadataKeyValue(props.keys.layout.header),
+                    layoutFooterUrl: this.requestMetadataKeyValue(props.keys.layout.footer),
                 };
 
                 // load all properties at the same time
-                return forkJoin(properties$).pipe(tap((res) => (this.properties = res)));
+                return forkJoin(metadataProperties$).pipe(tap((res) => (this.properties = res)));
             })
         );
     }
 
-    requestKeyValue(key: string): Observable<string | Error> {
+    requestMetadataKeyValue(key: string): Observable<string | Error> {
         return this.http.get(this.commonMetadataUrl + "/properties/" + key).pipe(
             instantiate(MetadataPropertyDto),
 
@@ -73,6 +76,14 @@ export class MetadataService {
 
             catchError(() => of(new Error(key)))
         );
+    }
+
+    requestTerritoryCodes(nutsCode: string = this.territoryNutsCode): Observable<string[]> {
+        return this.http.get<string[]>(`assets/territories/${nutsCode.toLowerCase()}.json`);
+    }
+
+    getTerritoryNutsCode(): string {
+        return this.territoryNutsCode;
     }
 
     getLayoutHeaderUrl(): string {

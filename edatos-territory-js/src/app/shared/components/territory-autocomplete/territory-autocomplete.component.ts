@@ -1,5 +1,9 @@
 import { Component, EventEmitter, Input, Output } from "@angular/core";
 
+import { TranslateService } from "@ngx-translate/core";
+
+import { PropertiesService } from "@app/core/service";
+
 @Component({
     selector: "app-territory-autocomplete",
     templateUrl: "./territory-autocomplete.component.html",
@@ -17,10 +21,22 @@ export class TerritoryAutocompleteComponent {
     @Output()
     searchEvent = new EventEmitter<string>();
 
-    private territories = ["Canarias", "Tenerife", "Madrid", "Albacete", "Sevilla"]; // TODO: Load from file.
+    private nutsCode: string;
+    private territories: string[] = [];
+
+    constructor(private propertiesService: PropertiesService, private translateService: TranslateService) {
+        this.nutsCode = propertiesService.getTerritoryNutsCode();
+        propertiesService.requestTerritoryCodes().subscribe((territories) => {
+            this.territories = territories.map(territory => this.translateService.instant(`territories.${this.nutsCode}.${territory}`));
+        });
+    }
 
     complete(event: { originalEvent: InputEvent; query: string }) {
-        this.suggestions = this.territories.filter((territory) => new RegExp(event.query, "gi").test(territory));
+        let searchTerm = this.removeDiacritics(event.query);
+        this.suggestions = this.territories.filter((territory) => {
+            territory = this.removeDiacritics(territory);
+            return new RegExp(searchTerm, "gi").test(territory);
+        });
     }
 
     search() {
@@ -29,5 +45,9 @@ export class TerritoryAutocompleteComponent {
 
     onNameChange(_event: any) {
         this.nameChange.emit(this.name);
+    }
+
+    private removeDiacritics(str: string): string {
+        return str.normalize("NFD").replace(/\p{Diacritic}/gu, "");
     }
 }

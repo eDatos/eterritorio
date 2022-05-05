@@ -3,13 +3,13 @@ import { Injectable } from "@angular/core";
 
 import { Observable } from "rxjs";
 
-import { MetadataService } from "@app/core/service";
+import { PropertiesService } from "@app/core/service";
 
 @Injectable({
     providedIn: "root",
 })
 export class HtmlService {
-    constructor(private http: HttpClient, private configService: MetadataService) {}
+    constructor(private http: HttpClient, private configService: PropertiesService) {}
 
     getHeaderHtml(): Observable<string> {
         return this.http.get(this.configService.getLayoutHeaderUrl(), {
