@@ -4,9 +4,9 @@ import { Injectable } from "@angular/core";
 import { Observable } from "rxjs";
 
 import { DatasetsDto, DatasetWithDescription } from "@app/core/model";
-import { MetadataService, instantiate } from "@app/core/service";
+import { PropertiesService, instantiate } from "@app/core/service";
 
-interface DatasetQuery {
+export interface DatasetQuery {
     territoryName: string;
     limit: number;
     offset: number;
@@ -18,8 +18,8 @@ interface DatasetQuery {
 export class DatasetService {
     public static REST_URL: string;
 
-    constructor(private http: HttpClient, private configService: MetadataService) {
-        DatasetService.REST_URL = this.configService.getStatisticalResourcesExternalApiUrl() + "/v1.0";
+    constructor(private http: HttpClient, private propertiesService: PropertiesService) {
+        DatasetService.REST_URL = this.propertiesService.getStatisticalResourcesExternalApiUrl() + "/v1.0";
     }
 
     getAllDatasets(): Observable<DatasetsDto> {

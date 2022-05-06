@@ -3,23 +3,23 @@ import { Injectable } from "@angular/core";
 
 import { Observable } from "rxjs";
 
-import { MetadataService } from "@app/core/service";
+import { PropertiesService } from "@app/core/service";
 
 @Injectable({
     providedIn: "root",
 })
 export class HtmlService {
-    constructor(private http: HttpClient, private configService: MetadataService) {}
+    constructor(private http: HttpClient, private propertiesService: PropertiesService) {}
 
     getHeaderHtml(): Observable<string> {
-        return this.http.get(this.configService.getLayoutHeaderUrl(), {
+        return this.http.get(this.propertiesService.getLayoutHeaderUrl(), {
             headers: { "Content-Type": "text/plain" },
             responseType: "text",
         });
     }
 
     getFooterHtml(): Observable<string> {
-        return this.http.get(this.configService.getLayoutFooterUrl(), {
+        return this.http.get(this.propertiesService.getLayoutFooterUrl(), {
             headers: { "Content-Type": "text/plain" },
             responseType: "text",
         });

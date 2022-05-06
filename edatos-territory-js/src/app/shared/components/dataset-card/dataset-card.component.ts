@@ -3,7 +3,7 @@ import { Component, Input, OnInit } from "@angular/core";
 import { TranslateService } from "@ngx-translate/core";
 
 import { Dataset } from "@app/core/model";
-import { DatasetService, MetadataService } from "@app/core/service";
+import { DatasetService, PropertiesService } from "@app/core/service";
 
 @Component({
     selector: "app-dataset-card",
@@ -21,7 +21,7 @@ export class DatasetCardComponent implements OnInit {
 
     constructor(
         private translateService: TranslateService,
-        private metadataService: MetadataService,
+        private metadataService: PropertiesService,
         private datasetService: DatasetService
     ) {}
 
