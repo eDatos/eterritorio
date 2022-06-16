@@ -1,4 +1,14 @@
 {
+    "search": {
+        "autocomplete": {
+            "placeholder": "Busqueu aquí: Canarias, La Orotava, Agaete, Las Palmas..."
+        },
+        "operations-tree": {
+            "empty": "No hi ha datasets adscrits a aquesta operació estadística",
+            "title": "Datasets per operació estadística"
+        },
+        "title": "Buscar datasets per territoris"
+    },
     "territories": {
         "ES53": {
             "CCAA_ILLES_BALEARS": "Illes Balears (CCAA)",

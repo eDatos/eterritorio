@@ -1,4 +1,14 @@
 {
+    "search": {
+        "autocomplete": {
+            "placeholder": "Search here: Canarias, La Orotava, Agaete, Las Palmas..."
+        },
+        "operations-tree": {
+            "empty": "There are no datasets assigned to this statistical operation",
+            "title": "Datasets by statistical operation"
+        },
+        "title": "Search datasets by territories"
+    },
     "territories": {
         "ES53": {
             "CCAA_ILLES_BALEARS": "Balearic islands (Autonomous region)",

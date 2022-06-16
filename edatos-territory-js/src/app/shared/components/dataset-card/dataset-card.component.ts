@@ -21,7 +21,7 @@ export class DatasetCardComponent implements OnInit {
 
     constructor(
         private translateService: TranslateService,
-        private metadataService: PropertiesService,
+        private propertiesService: PropertiesService,
         private datasetService: DatasetService
     ) {}
 
@@ -42,8 +42,6 @@ export class DatasetCardComponent implements OnInit {
     }
 
     getVisualizerUrl(): string {
-        return `${this.metadataService.getVisualizerWebUrl()}/data.html?agencyId=ISTAC&resourceId=${
-            this.dataset?.id
-        }&version=~latest&resourceType=dataset#visualization/table`;
+        return this.propertiesService.generateVisualizerUrl(this.dataset?.id);
     }
 }

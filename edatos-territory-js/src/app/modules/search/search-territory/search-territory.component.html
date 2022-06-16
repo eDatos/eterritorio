@@ -1,6 +1,6 @@
 <div class="search">
     <header class="search__header">
-        <h1 class="search__header-title">Búsqueda de datasets por territorios</h1>
+        <h1 class="search__header-title">{{ "search.title" | translate }}</h1>
         <app-territory-autocomplete
             class="search__input-autocomplete"
             [(name)]="territoryName"
@@ -9,6 +9,11 @@
     </header>
 
     <div class="search__body">
+        <div class="search__statistical-operations-tree">
+            <h3>{{'search.operations-tree.title' | translate}}</h3>
+            <app-operations-list *ngIf="!datasetDto"></app-operations-list>
+        </div>
+
         <div class="search__results" *ngIf="datasetDto">
             <span>Resultados: {{ datasetDto.total }}</span>
             <app-dataset-card

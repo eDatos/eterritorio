@@ -41,6 +41,12 @@ export class DatasetService {
         return this.http.get(url, { headers }).pipe(instantiate(DatasetsDto));
     }
 
+    getDatasetsByStatisticalOperationUrn(statisticalOperationUrn: string): Observable<DatasetsDto> {
+        const headers = { "Content-Type": "application/json" };
+        const url = `${DatasetService.REST_URL}/datasets?query=STATISTICAL_OPERATION_URN eq '${statisticalOperationUrn}' and is_last_version eq 'true'`;
+        return this.http.get(url, { headers }).pipe(instantiate(DatasetsDto));
+    }
+
     getDatasetByUrl(url: string): Observable<DatasetWithDescription> {
         const headers = { "Content-Type": "application/json" };
         url += `?fields=-data,-metadata`;

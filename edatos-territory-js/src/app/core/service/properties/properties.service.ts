@@ -10,6 +10,19 @@ import { ConfigService } from "@app/core/service/config/config.service";
 /**
  * Provides the already loaded values from common-metadata. This service *must* be initialized
  * before the app starts. Please sde {@link init} method documentation.
+ *
+ *
+ * **HOW TO ADD NEW PROPERTIES**
+ *
+ * Theres a JSON file in the assets folder, <code>properties.json</code>, that contains the
+ * *key* of the properties the app needs to load. When the app is deployed that file is fetched (HTTP)
+ * and those keys then are used to request their respective values.
+ *
+ * However, that file is also locally imported to provide static type-checking. So, to add a property:
+ *
+ * 1. Add the property key in the properties.json file.
+ * 2. Load the property in {@link init} method using {@link requestMetadataKeyValue}.
+ * 3. Create a getter for the property.
  */
 @Injectable({
     providedIn: "root",
@@ -19,6 +32,7 @@ export class PropertiesService {
 
     private commonMetadataUrl!: string;
     private territoryNutsCode!: string;
+    private agencyId!: string;
 
     constructor(private http: HttpClient, private configService: ConfigService) {}
 
@@ -45,10 +59,17 @@ export class PropertiesService {
                 console.log("Properties file loaded");
                 this.commonMetadataUrl = props.endpoints.cmetadata.url;
                 this.territoryNutsCode = props.config.territoryNutsCode;
+                this.agencyId = props.config.agencyId;
 
+                /**
+                 * NOTE! Add HERE the properties you need to load in the app.
+                 */
                 const metadataProperties$ = {
                     statisticalResourcesExternalApiUrl: this.requestMetadataKeyValue(
                         props.keys.statisticalResources.rest.external
+                    ),
+                    statisticalOperationsExternalApiUrl: this.requestMetadataKeyValue(
+                        props.keys.statisticalOperations.rest.external
                     ),
                     visualizerWebUrl: this.requestMetadataKeyValue(props.keys.visualizer.web.external),
                     layoutHeaderUrl: this.requestMetadataKeyValue(props.keys.layout.header),
@@ -98,7 +119,23 @@ export class PropertiesService {
         return this.properties.statisticalResourcesExternalApiUrl;
     }
 
+    getStatisticalOperationsExternalApiUrl(): string {
+        return this.properties.statisticalOperationsExternalApiUrl;
+    }
+
     getVisualizerWebUrl(): string {
         return this.properties.visualizerWebUrl;
+    }
+
+    // TODO(EDATOS-3622): better place for this? it's ok to be here?
+    generateVisualizerUrl(
+        resourceId: string,
+        version = "~latest",
+        resourceType = "dataset",
+        visualization = "table"
+    ): string {
+        return `${this.getVisualizerWebUrl()}/data.html?agencyId=${
+            this.agencyId
+        }&resourceId=${resourceId}&version=${version}&resourceType=${resourceType}#visualization/${visualization}`;
     }
 }

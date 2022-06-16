@@ -1,6 +1,7 @@
 {
     "config": {
-        "territoryNutsCode": "ES70"
+        "territoryNutsCode": "ES70",
+        "agencyId": "ISTAC"
     },
     "endpoints": {
         "cmetadata": {
@@ -15,6 +16,11 @@
         "statisticalResources": {
             "rest": {
                 "external": "metamac.statistical_resources.rest.external"
+            }
+        },
+        "statisticalOperations": {
+            "rest": {
+                "external": "metamac.statistical_operations.rest.external"
             }
         },
         "visualizer": {
