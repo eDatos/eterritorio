@@ -15,6 +15,7 @@ import { AVAILABLE_LANGS, DEFAULT_LANG } from "@app/app.constants";
 import { PropertiesService } from "@app/core/service";
 import { LayoutModule } from "@app/modules/layout";
 import { SearchModule } from "@app/modules/search";
+import { ErrorModule } from "@app/modules/error";
 
 export function createTranslateLoader(http: HttpClient) {
     return new TranslateHttpLoader(http, "./assets/i18n/", ".json");
@@ -35,6 +36,7 @@ export function configureTranslationService(translateService: TranslateService):
         BrowserAnimationsModule,
         LayoutModule,
         SearchModule,
+        ErrorModule,
         LoadingBarHttpClientModule,
         LoadingBarRouterModule,
         LoadingBarModule,

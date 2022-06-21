@@ -1,4 +1,10 @@
 {
+    "error": {
+        "404": {
+            "detail": "Page not found",
+            "title": "Error 404"
+        }
+    },
     "search": {
         "autocomplete": {
             "placeholder": "Search here: Canarias, La Orotava, Agaete, Las Palmas..."
