@@ -1,10 +1,13 @@
-<p-tree [value]="tree" (onNodeExpand)="loadOperationDatasets($event)" [loading]="loading">
+<p-tree [value]="tree" [loading]="loading">
     <ng-template let-node pTemplate="default">
         {{ node.label }}
-        <i *ngIf="node.loading" class="fa fa-spin fa-spinner"></i>
+        <i *ngIf="node.loading" aria-hidden="true" class="fa fa-spin fa-spinner"></i>
     </ng-template>
     <ng-template let-node pTemplate="dataset">
-        <a [href]="getVisualizerUrl(node.data.id)" target="_blank"><span><i class="fa fa-table"></i></span> {{ node.label }}</a>
+        <a class="underline-link" [href]="getVisualizerUrl(node.data.id)" target="_blank">
+            <span><i aria-hidden="true" class="fa fa-table"></i></span>
+            {{ node.label }}
+        </a>
     </ng-template>
     <ng-template let-node pTemplate="empty">
         <span>{{ "search.operations-tree.empty" | translate }}</span>

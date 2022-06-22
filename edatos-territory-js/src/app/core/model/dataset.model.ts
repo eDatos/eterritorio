@@ -1,6 +1,6 @@
 import { Type } from "class-transformer";
 
-import { InternationalString, Kind, SelfLink } from "@app/core/model";
+import { InternationalString, Kind, SelfLink, StatisticalOperation } from "@app/core/model";
 
 export class Dataset {
     public id!: string;
@@ -19,9 +19,17 @@ export class Dataset {
     }
 }
 
+class DatasetMetadata {
+    @Type(() => StatisticalOperation)
+    statisticalOperation!: StatisticalOperation;
+}
+
 export class DatasetWithDescription extends Dataset {
     @Type(() => InternationalString)
     public description!: InternationalString;
+
+    @Type(() => DatasetMetadata)
+    public metadata?: DatasetMetadata;
 }
 
 export class DatasetsDto {

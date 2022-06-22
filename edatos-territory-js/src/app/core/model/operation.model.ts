@@ -2,7 +2,7 @@ import { Type } from "class-transformer";
 
 import { InternationalString, Kind, SelfLink } from "@app/core/model";
 
-export class Operation {
+export class StatisticalOperation {
     public id!: string;
     public urn!: string;
 
@@ -20,8 +20,8 @@ export class Operation {
 }
 
 export class OperationsDto {
-    @Type(() => Operation)
-    public operation!: Operation[];
+    @Type(() => StatisticalOperation)
+    public operation!: StatisticalOperation[];
 
     public kind!: Kind;
 

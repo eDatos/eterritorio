@@ -1,0 +1,49 @@
+import { Component, OnInit } from "@angular/core";
+import { ActivatedRoute } from "@angular/router";
+
+import { forkJoin } from "rxjs";
+
+import { DatasetWithDescription } from "@app/core/model";
+import { DatasetService, PropertiesService } from "@app/core/service";
+
+@Component({
+    selector: "app-territory",
+    templateUrl: "./territory.component.html",
+    styleUrls: ["./territory.component.scss"],
+})
+export class TerritoryComponent implements OnInit {
+    territoryNutsCode: string;
+    datasets: DatasetWithDescription[] = [];
+
+    variableElementId?: string;
+
+    constructor(
+        private route: ActivatedRoute,
+        private propertiesService: PropertiesService,
+        private datasetService: DatasetService
+    ) {
+        this.territoryNutsCode = this.propertiesService.getTerritoryNutsCode();
+    }
+
+    ngOnInit(): void {
+        this.route.params.subscribe((params) => {
+            const variableElementId = params["variableElementId"];
+            this.init(variableElementId);
+        });
+    }
+
+    init(variableElementId: string) {
+        this.variableElementId = variableElementId;
+        this.datasetService.getDatasetsByTerritoryVariableElementId(this.variableElementId).subscribe((datasets) => {
+            const observables$ = [];
+            for (const dataset of datasets.dataset) {
+                observables$.push(
+                    this.datasetService.getDataset("ISTAC", dataset.id, "~latest", ["-data", "-dimension.description"])
+                );
+            }
+            forkJoin(observables$).subscribe((d: DatasetWithDescription[]) => {
+                this.datasets = d;
+            });
+        });
+    }
+}
