@@ -4,8 +4,7 @@ import { Injectable } from "@angular/core";
 import { Observable, catchError, forkJoin, map, of, retry, shareReplay, switchMap, tap } from "rxjs";
 
 import { MetadataPropertyDto } from "@app/core/model";
-import { instantiate } from "@app/core/service";
-import { ConfigService } from "@app/core/service/config/config.service";
+import { ConfigService, instantiate } from "@app/core/service";
 
 /**
  * Provides the already loaded values from common-metadata. This service *must* be initialized
@@ -57,12 +56,16 @@ export class PropertiesService {
         return this.configService.getProperties().pipe(
             switchMap((props) => {
                 console.log("Properties file loaded");
+
+                /**
+                 * Add here the values that you need from the config file.
+                 */
                 this.commonMetadataUrl = props.endpoints.cmetadata.url;
                 this.territoryNutsCode = props.config.territoryNutsCode;
                 this.agencyId = props.config.agencyId;
 
                 /**
-                 * NOTE! Add HERE the properties you need to load in the app.
+                 * Add here the properties you need to request to common-metadata.
                  */
                 const metadataProperties$ = {
                     statisticalResourcesExternalApiUrl: this.requestMetadataKeyValue(
