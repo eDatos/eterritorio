@@ -45,22 +45,6 @@ export class OperationsListComponent implements OnInit {
             });
     }
 
-    loadOperationDatasets(event: any) {
-        if (event.node) {
-            event.node.loading = true;
-            this.datasetService
-                .getDatasetsByStatisticalOperationUrn(event.node.key)
-                .pipe(finalize(() => (event.node.loading = false)))
-                .subscribe((datasets) => {
-                    if (datasets.total > 0) {
-                        event.node.children = this.toTreeNodeList(datasets.dataset);
-                    } else {
-                        event.node.children = [];
-                    }
-                });
-        }
-    }
-
     getVisualizerUrl(datasetId: string): string {
         return this.propertiesService.generateVisualizerUrl(datasetId);
     }
