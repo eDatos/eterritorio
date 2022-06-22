@@ -192,6 +192,12 @@
             "MUN_YAIZA": "Yaiza",
             "PROV_LAS_PALMAS": "Las Palmas (Provincia)",
             "PROV_SANTA_CRUZ_TENERIFE": "Santa Cruz de Tenerife (Provincia)"
+        },
+        "granularity": {
+            "ccaa": "Comunidades autónomas",
+            "islands": "Islas",
+            "municipalities": "Municipios",
+            "provinces": "Provincias"
         }
     }
 }
