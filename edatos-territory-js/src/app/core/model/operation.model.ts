@@ -19,7 +19,7 @@ export class StatisticalOperation {
     }
 }
 
-export class OperationsDto {
+export class StatisticalOperationsDto {
     @Type(() => StatisticalOperation)
     public operation!: StatisticalOperation[];
 

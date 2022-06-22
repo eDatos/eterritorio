@@ -3,7 +3,7 @@ import { Injectable } from "@angular/core";
 
 import { Observable } from "rxjs";
 
-import { OperationsDto } from "@app/core/model";
+import { StatisticalOperationsDto } from "@app/core/model";
 import { PropertiesService, instantiate } from "@app/core/service";
 
 @Injectable({
@@ -16,9 +16,9 @@ export class OperationService {
         OperationService.REST_URL = this.propertiesService.getStatisticalOperationsExternalApiUrl() + "/v1.0";
     }
 
-    getAllOperations(): Observable<OperationsDto> {
+    getAllOperations(): Observable<StatisticalOperationsDto> {
         const headers = { "Content-Type": "application/json" };
         const url = `${OperationService.REST_URL}/operations`;
-        return this.http.get(url, { headers }).pipe(instantiate(OperationsDto));
+        return this.http.get(url, { headers }).pipe(instantiate(StatisticalOperationsDto));
     }
 }
