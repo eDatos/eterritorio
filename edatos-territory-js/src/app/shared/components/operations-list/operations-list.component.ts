@@ -6,7 +6,7 @@ import { TranslateService } from "@ngx-translate/core";
 import { finalize } from "rxjs";
 
 import { Dataset, DatasetWithDescription } from "@app/core/model";
-import { DatasetService, OperationService, PropertiesService } from "@app/core/service";
+import { OperationService, VisualizerService } from "@app/core/service";
 
 @Component({
     selector: "app-operations-list",
@@ -26,8 +26,7 @@ export class OperationsListComponent implements OnInit {
     constructor(
         private operationService: OperationService,
         private translateService: TranslateService,
-        private datasetService: DatasetService,
-        private propertiesService: PropertiesService
+        private visualizerService: VisualizerService
     ) {}
 
     ngOnInit(): void {
@@ -46,7 +45,7 @@ export class OperationsListComponent implements OnInit {
     }
 
     getVisualizerUrl(datasetId: string): string {
-        return this.propertiesService.generateVisualizerUrl(datasetId);
+        return this.visualizerService.generateVisualizerUrl(datasetId);
     }
 
     private toTreeNodeList(siemacResource: { urn: string; getName: Function }[]): TreeNode[] {

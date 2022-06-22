@@ -3,7 +3,7 @@ import { Component, Input, OnInit } from "@angular/core";
 import { TranslateService } from "@ngx-translate/core";
 
 import { Dataset } from "@app/core/model";
-import { DatasetService, PropertiesService } from "@app/core/service";
+import { DatasetService, PropertiesService, VisualizerService } from "@app/core/service";
 
 @Component({
     selector: "app-dataset-card",
@@ -22,7 +22,8 @@ export class DatasetCardComponent implements OnInit {
     constructor(
         private translateService: TranslateService,
         private propertiesService: PropertiesService,
-        private datasetService: DatasetService
+        private datasetService: DatasetService,
+        private visualizerService: VisualizerService
     ) {}
 
     ngOnInit(): void {
@@ -42,6 +43,6 @@ export class DatasetCardComponent implements OnInit {
     }
 
     getVisualizerUrl(): string {
-        return this.propertiesService.generateVisualizerUrl(this.dataset?.id);
+        return this.visualizerService.generateVisualizerUrl(this.dataset?.id);
     }
 }

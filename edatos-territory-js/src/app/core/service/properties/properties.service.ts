@@ -130,15 +130,7 @@ export class PropertiesService {
         return this.properties.visualizerWebUrl;
     }
 
-    // TODO(EDATOS-3622): better place for this? it's ok to be here?
-    generateVisualizerUrl(
-        resourceId: string,
-        version = "~latest",
-        resourceType = "dataset",
-        visualization = "table"
-    ): string {
-        return `${this.getVisualizerWebUrl()}/data.html?agencyId=${
-            this.agencyId
-        }&resourceId=${resourceId}&version=${version}&resourceType=${resourceType}#visualization/${visualization}`;
+    getAgencyId() {
+        return this.properties.agencyId;
     }
 }
