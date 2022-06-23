@@ -2,6 +2,7 @@ import { CommonModule } from "@angular/common";
 import { NgModule } from "@angular/core";
 
 import { PaginatorModule } from "primeng/paginator";
+import { ProgressSpinnerModule } from "primeng/progressspinner";
 
 import { TranslateModule } from "@ngx-translate/core";
 
@@ -12,6 +13,6 @@ import { SharedModule } from "@app/shared";
 
 @NgModule({
     declarations: [SearchTerritoryComponent, TerritoriesListComponent, TerritoryComponent],
-    imports: [CommonModule, SharedModule, PaginatorModule, TranslateModule],
+    imports: [CommonModule, SharedModule, PaginatorModule, TranslateModule, ProgressSpinnerModule],
 })
 export class SearchModule {}
