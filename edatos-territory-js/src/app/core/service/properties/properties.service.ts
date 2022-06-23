@@ -131,6 +131,6 @@ export class PropertiesService {
     }
 
     getAgencyId() {
-        return this.properties.agencyId;
+        return this.agencyId;
     }
 }

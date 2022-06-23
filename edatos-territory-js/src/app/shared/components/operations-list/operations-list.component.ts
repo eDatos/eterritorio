@@ -5,7 +5,7 @@ import { TreeNode } from "primeng/api";
 import { TranslateService } from "@ngx-translate/core";
 import { finalize } from "rxjs";
 
-import { Dataset, DatasetWithDescription } from "@app/core/model";
+import { Dataset, DatasetBase } from "@app/core/model";
 import { OperationService, VisualizerService } from "@app/core/service";
 
 @Component({
@@ -18,8 +18,7 @@ export class OperationsListComponent implements OnInit {
      * Variable element ID of the territory.
      */
     @Input()
-    datasets: DatasetWithDescription[] = [];
-
+    datasets?: Dataset[];
     tree: TreeNode[] = [];
     loading = false;
 
@@ -36,7 +35,7 @@ export class OperationsListComponent implements OnInit {
             .pipe(finalize(() => (this.loading = false)))
             .subscribe((operations) => {
                 const operationsToShow = operations.operation.filter((operation) => {
-                    return this.datasets.some(
+                    return this.datasets?.some(
                         (dataset) => dataset.metadata?.statisticalOperation.urn === operation.urn
                     );
                 });
@@ -51,7 +50,7 @@ export class OperationsListComponent implements OnInit {
     private toTreeNodeList(siemacResource: { urn: string; getName: Function }[]): TreeNode[] {
         const children = [];
         for (const elem of siemacResource) {
-            const isDataset = elem instanceof Dataset;
+            const isDataset = elem instanceof DatasetBase;
             const node: TreeNode = {
                 key: elem.urn,
                 label: elem.getName(this.translateService.currentLang),
@@ -62,7 +61,7 @@ export class OperationsListComponent implements OnInit {
             children.push(node);
             if (!isDataset) {
                 node.children = this.toTreeNodeList(
-                    this.datasets.filter((dataset) => dataset.metadata?.statisticalOperation.urn === elem.urn)
+                    this.datasets?.filter((dataset) => dataset.metadata?.statisticalOperation.urn === elem.urn) || []
                 );
             }
         }

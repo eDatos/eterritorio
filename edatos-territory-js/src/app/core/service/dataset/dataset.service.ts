@@ -3,7 +3,7 @@ import { Injectable } from "@angular/core";
 
 import { Observable } from "rxjs";
 
-import { DatasetWithDescription, DatasetsDto } from "@app/core/model";
+import { Dataset, DatasetsDto } from "@app/core/model";
 import { PropertiesService, instantiate } from "@app/core/service";
 
 export interface DatasetQuery {
@@ -33,9 +33,9 @@ export class DatasetService {
         resourceId: string,
         version: string,
         fields = ["-data", "-metadata"]
-    ): Observable<DatasetWithDescription> {
+    ): Observable<Dataset> {
         const url = `${DatasetService.REST_URL}/datasets/${agency}/${resourceId}/${version}?fields=${fields.join(",")}`;
-        return this.http.get(url).pipe(instantiate(DatasetWithDescription));
+        return this.http.get(url).pipe(instantiate(Dataset));
     }
 
     getAllDatasetsByTerritory(search: string): Observable<DatasetsDto> {
@@ -59,8 +59,8 @@ export class DatasetService {
         return this.http.get(url /**/).pipe(instantiate(DatasetsDto));
     }
 
-    getDatasetByUrl(url: string, fields = ["-data", "-metadata"]): Observable<DatasetWithDescription> {
+    getDatasetByUrl(url: string, fields = ["-data", "-metadata"]): Observable<Dataset> {
         url += `?fields=${fields.join(",")}`;
-        return this.http.get(url).pipe(instantiate(DatasetWithDescription));
+        return this.http.get(url).pipe(instantiate(Dataset));
     }
 }

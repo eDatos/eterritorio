@@ -1,9 +1,9 @@
 import { Component, OnInit } from "@angular/core";
 import { ActivatedRoute } from "@angular/router";
 
-import { forkJoin } from "rxjs";
+import { finalize, forkJoin } from "rxjs";
 
-import { DatasetWithDescription } from "@app/core/model";
+import { Dataset } from "@app/core/model";
 import { DatasetService, PropertiesService } from "@app/core/service";
 
 @Component({
@@ -13,8 +13,8 @@ import { DatasetService, PropertiesService } from "@app/core/service";
 })
 export class TerritoryComponent implements OnInit {
     territoryNutsCode: string;
-    datasets: DatasetWithDescription[] = [];
-
+    datasets?: Dataset[];
+    loading = false;
     variableElementId?: string;
 
     constructor(
@@ -33,17 +33,25 @@ export class TerritoryComponent implements OnInit {
     }
 
     init(variableElementId: string) {
+        this.loading = true;
         this.variableElementId = variableElementId;
+
+        const agencyId = this.propertiesService.getAgencyId();
+
         this.datasetService.getDatasetsByTerritoryVariableElementId(this.variableElementId).subscribe((datasets) => {
             const observables$ = [];
+
             for (const dataset of datasets.dataset) {
                 observables$.push(
-                    this.datasetService.getDataset("ISTAC", dataset.id, "~latest", ["-data", "-dimension.description"])
+                    this.datasetService.getDataset(agencyId, dataset.id, "~latest", ["-data", "-dimension.description"])
                 );
             }
-            forkJoin(observables$).subscribe((d: DatasetWithDescription[]) => {
-                this.datasets = d;
-            });
+
+            forkJoin(observables$)
+                .pipe(finalize(() => (this.loading = false)))
+                .subscribe((datasets: Dataset[]) => {
+                    this.datasets = datasets;
+                });
         });
     }
 }

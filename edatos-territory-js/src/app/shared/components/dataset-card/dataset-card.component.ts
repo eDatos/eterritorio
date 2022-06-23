@@ -2,7 +2,7 @@ import { Component, Input, OnInit } from "@angular/core";
 
 import { TranslateService } from "@ngx-translate/core";
 
-import { Dataset } from "@app/core/model";
+import { DatasetBase } from "@app/core/model";
 import { DatasetService, PropertiesService, VisualizerService } from "@app/core/service";
 
 @Component({
@@ -12,7 +12,7 @@ import { DatasetService, PropertiesService, VisualizerService } from "@app/core/
 })
 export class DatasetCardComponent implements OnInit {
     @Input()
-    dataset!: Dataset;
+    dataset!: DatasetBase;
 
     lang = this.translateService.currentLang;
     title?: string | null;
