@@ -36,7 +36,7 @@ export class TerritoriesListComponent implements OnInit {
             } else if (code.startsWith("MUN")) {
                 this.munTerritories.push(code);
             } else {
-                throw new Error();
+                throw new Error("could not detect the type of the territory: " + code);
             }
         }
     }
