@@ -3,3 +3,19 @@
 body {
     font-family: Inter, serif;
 }
+
+// see https://css-irl.info/animating-underlines/
+.underline-link {
+    color: var(--text-color);
+    text-decoration: none;
+    background: linear-gradient(to right, white, white), linear-gradient(to right, var(--text-color), var(--text-color));
+    background-size: 100% 0.1em, 0 0.1em;
+    background-position: 100% 100%, 0 100%;
+    background-repeat: no-repeat;
+    transition: background-size 400ms;
+
+    &:hover,
+    &:focus {
+        background-size: 0 0.1em, 100% 0.1em;
+    }
+}

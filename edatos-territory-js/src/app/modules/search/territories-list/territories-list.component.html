@@ -1,0 +1,34 @@
+<div class="territories-columns">
+    <div *ngIf="ccaaTerritories" class="territories-list">
+        <h3>{{ "territories.granularity.ccaa" | translate }}</h3>
+        <div *ngFor="let territory of ccaaTerritories" class="territory">
+            <a class="underline-link" [href]="territory">
+                {{ "territories." + nutsCode + "." + territory | translate }}
+            </a>
+        </div>
+    </div>
+    <div *ngIf="provTerritories" class="territories-list">
+        <h3>{{ "territories.granularity.provinces" | translate }}</h3>
+        <div *ngFor="let territory of provTerritories" class="territory">
+            <a class="underline-link" [href]="territory">
+                {{ "territories." + nutsCode + "." + territory | translate }}
+            </a>
+        </div>
+    </div>
+    <div *ngIf="islandTerritories" class="territories-list">
+        <h3>{{ "territories.granularity.islands" | translate }}</h3>
+        <div *ngFor="let territory of islandTerritories" class="territory">
+            <a class="underline-link" [href]="territory">
+                {{ "territories." + nutsCode + "." + territory | translate }}
+            </a>
+        </div>
+    </div>
+    <div *ngIf="munTerritories" class="territories-list">
+        <h3>{{ "territories.granularity.municipalities" | translate }}</h3>
+        <div *ngFor="let territory of munTerritories" class="territory">
+            <a class="underline-link" [href]="territory">
+                {{ "territories." + nutsCode + "." + territory | translate }}
+            </a>
+        </div>
+    </div>
+</div>

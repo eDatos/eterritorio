@@ -3,6 +3,8 @@ import { Type } from "class-transformer";
 export enum Kind {
     DATASET = "statisticalResources#dataset",
     DATASETS = "statisticalResources#datasets",
+    OPERATION = "statisticalResources#operation",
+    OPERATIONS = "statisticalResources#operations",
     PROPERTY = "commonMetadata#property",
 }
 

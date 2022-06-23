@@ -1,0 +1,11 @@
+.territories-columns {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 2em;
+}
+
+.territories-list {
+    min-width: 12em;
+}

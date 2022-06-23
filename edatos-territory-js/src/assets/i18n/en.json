@@ -1,4 +1,20 @@
 {
+    "error": {
+        "404": {
+            "detail": "Page not found",
+            "title": "Error 404"
+        }
+    },
+    "search": {
+        "autocomplete": {
+            "placeholder": "Search here: Canarias, La Orotava, Agaete, Las Palmas..."
+        },
+        "operations-tree": {
+            "empty": "There are no datasets assigned to this statistical operation",
+            "title": "Datasets by statistical operation"
+        },
+        "title": "Search datasets by territories"
+    },
     "territories": {
         "ES53": {
             "CCAA_ILLES_BALEARS": "Balearic islands (Autonomous region)",
@@ -176,6 +192,12 @@
             "MUN_YAIZA": "Yaiza",
             "PROV_LAS_PALMAS": "Las Palmas (Province)",
             "PROV_SANTA_CRUZ_TENERIFE": "Santa Cruz de Tenerife (Province)"
+        },
+        "granularity": {
+            "ccaa": "Autonomous regions",
+            "islands": "Islands",
+            "municipalities": "Municipalities",
+            "provinces": "Provinces"
         }
     }
 }

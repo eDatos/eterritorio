@@ -2,8 +2,8 @@ import { Component, Input, OnInit } from "@angular/core";
 
 import { TranslateService } from "@ngx-translate/core";
 
-import { Dataset } from "@app/core/model";
-import { DatasetService, PropertiesService } from "@app/core/service";
+import { DatasetBase } from "@app/core/model";
+import { DatasetService, PropertiesService, VisualizerService } from "@app/core/service";
 
 @Component({
     selector: "app-dataset-card",
@@ -12,7 +12,7 @@ import { DatasetService, PropertiesService } from "@app/core/service";
 })
 export class DatasetCardComponent implements OnInit {
     @Input()
-    dataset!: Dataset;
+    dataset!: DatasetBase;
 
     lang = this.translateService.currentLang;
     title?: string | null;
@@ -21,8 +21,9 @@ export class DatasetCardComponent implements OnInit {
 
     constructor(
         private translateService: TranslateService,
-        private metadataService: PropertiesService,
-        private datasetService: DatasetService
+        private propertiesService: PropertiesService,
+        private datasetService: DatasetService,
+        private visualizerService: VisualizerService
     ) {}
 
     ngOnInit(): void {
@@ -42,8 +43,6 @@ export class DatasetCardComponent implements OnInit {
     }
 
     getVisualizerUrl(): string {
-        return `${this.metadataService.getVisualizerWebUrl()}/data.html?agencyId=ISTAC&resourceId=${
-            this.dataset?.id
-        }&version=~latest&resourceType=dataset#visualization/table`;
+        return this.visualizerService.generateVisualizerUrl(this.dataset?.id);
     }
 }

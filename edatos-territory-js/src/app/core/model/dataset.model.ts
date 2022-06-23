@@ -1,8 +1,8 @@
 import { Type } from "class-transformer";
 
-import { InternationalString, Kind, SelfLink } from "@app/core/model";
+import { InternationalString, Kind, SelfLink, StatisticalOperation } from "@app/core/model";
 
-export class Dataset {
+export class DatasetBase {
     public id!: string;
     public urn!: string;
 
@@ -19,14 +19,22 @@ export class Dataset {
     }
 }
 
-export class DatasetWithDescription extends Dataset {
+class DatasetMetadata {
+    @Type(() => StatisticalOperation)
+    statisticalOperation!: StatisticalOperation;
+}
+
+export class Dataset extends DatasetBase {
     @Type(() => InternationalString)
     public description!: InternationalString;
+
+    @Type(() => DatasetMetadata)
+    public metadata?: DatasetMetadata;
 }
 
 export class DatasetsDto {
-    @Type(() => Dataset)
-    public dataset!: Dataset[];
+    @Type(() => DatasetBase)
+    public dataset!: DatasetBase[];
 
     public kind!: Kind;
 

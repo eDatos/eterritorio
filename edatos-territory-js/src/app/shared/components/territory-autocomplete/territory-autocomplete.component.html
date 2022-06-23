@@ -1,6 +1,7 @@
 <p-autoComplete
     [(ngModel)]="name"
     [suggestions]="suggestions"
+    [placeholder]="'search.autocomplete.placeholder' | translate"
     (completeMethod)="complete($event)"
     (keyup.enter)="search()"
     (onSelect)="search()"
