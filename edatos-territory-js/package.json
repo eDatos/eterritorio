@@ -10,7 +10,8 @@
         "watch": "ng build --watch --configuration development",
         "test": "ng test --configuration development",
         "test:prod": "ng test",
-        "lint": "ng lint"
+        "lint": "ng lint",
+        "//": "FIXME: update from alpha coming soon, remove this comment after update"
     },
     "private": true,
     "dependencies": {
