@@ -15,7 +15,7 @@ export class VisualizerService {
         visualization = "table"
     ): string {
         const visualizerWebUrl = this.propertiesService.getVisualizerWebUrl();
-        const agencyId = this.propertiesService.getAgencyId();
+        const agencyId = this.propertiesService.getOrganization();
         return `${visualizerWebUrl}/data.html?agencyId=${agencyId}&resourceId=${resourceId}&version=${version}&resourceType=${resourceType}#visualization/${visualization}`;
     }
 }
