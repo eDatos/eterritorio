@@ -36,7 +36,7 @@ export class TerritoryComponent implements OnInit {
         this.loading = true;
         this.variableElementId = variableElementId;
 
-        const agencyId = this.propertiesService.getAgencyId();
+        const agencyId = this.propertiesService.getOrganization();
 
         this.datasetService.getDatasetsByTerritoryVariableElementId(this.variableElementId).subscribe((datasets) => {
             const observables$ = [];

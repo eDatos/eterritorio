@@ -1,7 +1,6 @@
 {
     "config": {
-        "territoryNutsCode": "ES70",
-        "agencyId": "ISTAC"
+        "territoryNutsCode": "ES70"
     },
     "endpoints": {
         "cmetadata": {
@@ -9,6 +8,7 @@
         }
     },
     "keys": {
+        "organisation": "metamac.organisation",
         "layout": {
             "header": "metamac.app.style.header.url",
             "footer": "metamac.app.style.footer.url"

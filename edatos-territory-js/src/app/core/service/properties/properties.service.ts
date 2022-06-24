@@ -31,7 +31,6 @@ export class PropertiesService {
 
     private commonMetadataUrl!: string;
     private territoryNutsCode!: string;
-    private agencyId!: string;
 
     constructor(private http: HttpClient, private configService: ConfigService) {}
 
@@ -62,12 +61,12 @@ export class PropertiesService {
                  */
                 this.commonMetadataUrl = props.endpoints.cmetadata.url;
                 this.territoryNutsCode = props.config.territoryNutsCode;
-                this.agencyId = props.config.agencyId;
 
                 /**
                  * Add here the properties you need to request to common-metadata.
                  */
                 const metadataProperties$ = {
+                    organisation: this.requestMetadataKeyValue(props.keys.organisation),
                     statisticalResourcesExternalApiUrl: this.requestMetadataKeyValue(
                         props.keys.statisticalResources.rest.external
                     ),
@@ -130,7 +129,7 @@ export class PropertiesService {
         return this.properties.visualizerWebUrl;
     }
 
-    getAgencyId() {
-        return this.agencyId;
+    getOrganization() {
+        return this.properties.organisation;
     }
 }
