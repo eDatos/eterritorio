@@ -3,7 +3,7 @@
         <h3>{{ "nodes." + group.id | translate }}</h3>
         <div *ngFor="let child of group.children" class="territories-list">
             <div class="territories">
-                <a *ngIf="child.codes === undefined" class="underline-link" [href]="child.id">
+                <a *ngIf="child.codes === undefined" class="underline-link" [routerLink]="child.id">
                     {{ "nodes." + child.id | translate }}
                 </a>
             </div>
@@ -12,7 +12,7 @@
                 <h4>{{ "nodes." + child.id | translate }}</h4>
 
                 <div class="territories">
-                    <a *ngFor="let code of child.codes" class="underline-link" [href]="code">
+                    <a *ngFor="let code of child.codes" class="underline-link" [routerLink]="code">
                         {{ "nodes." + code | translate }}
                     </a>
                 </div>

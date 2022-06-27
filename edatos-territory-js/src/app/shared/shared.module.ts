@@ -1,6 +1,7 @@
 import { CommonModule } from "@angular/common";
 import { NgModule } from "@angular/core";
 import { FormsModule, ReactiveFormsModule } from "@angular/forms";
+import { RouterModule } from "@angular/router";
 
 import { AutoCompleteModule } from "primeng/autocomplete";
 import { ButtonModule } from "primeng/button";
@@ -18,7 +19,7 @@ import { StripHtmlPipe } from "./pipe/strip-html.pipe";
 
 @NgModule({
     declarations: [SafeHtmlPipe, DatasetCardComponent, StripHtmlPipe, OperationsListComponent],
-    exports: [SafeHtmlPipe, DatasetCardComponent, OperationsListComponent],
+    exports: [SafeHtmlPipe, DatasetCardComponent, OperationsListComponent, RouterModule],
     imports: [
         CommonModule,
         CardModule,
