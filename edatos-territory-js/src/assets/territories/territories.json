@@ -1,4 +1,5 @@
 {
+    "//": "NOTE: after updating the list make sure you also update i18n files accordingly",
     "zones": [
         {
             "id": "ccaaProv",
