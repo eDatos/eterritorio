@@ -1,0 +1,155 @@
+{
+    "zones": [
+        {
+            "id": "ccaaProv",
+            "i18n_title": "zones.ccaaProv.title",
+            "codes": ["CCAA_CANARIAS", "PROV_LAS_PALMAS", "PROV_SANTA_CRUZ_TENERIFE"]
+        },
+        {
+            "id": "islands",
+            "i18n_title": "zones.islands.title",
+            "codes": [
+                "ISLA_LA_PALMA",
+                "ISLA_HIERRO",
+                "ISLA_GOMERA",
+                "ISLA_TENERIFE",
+                "ISLA_GRAN_CANARIA",
+                "ISLA_FUERTEVENTURA",
+                "ISLA_LANZAROTE",
+                "ISLA_GRACIOSA"
+            ]
+        },
+        {
+            "id": "municipalities",
+            "i18n_title": "zones.municipalities.title",
+            "codes": [
+                {
+                    "id": "municipalities_ISLA_LA_PALMA",
+                    "i18n_title": "zones.municipalities.ISLA_LA_PALMA",
+                    "children": [
+                        "MUN_BARLOVENTO",
+                        "MUN_BRENIA_ALTA",
+                        "MUN_BRENIA_BAJA",
+                        "MUN_FUENCALIENTE_LA_PALMA",
+                        "MUN_GARAFIA",
+                        "MUN_PASO",
+                        "MUN_PUNTAGORDA",
+                        "MUN_PUNTALLANA",
+                        "MUN_SAN_ANDRES_SAUCES",
+                        "MUN_TAZACORTE",
+                        "MUN_TIJARAFE",
+                        "MUN_VILLA_MAZO",
+                        "MUN_SANTA_CRUZ_LA_PALMA",
+                        "MUN_LLANOS_ARIDANE"
+                    ]
+                },
+                {
+                    "id": "municipalities_ISLA_HIERRO",
+                    "i18n_title": "zones.municipalities.ISLA_HIERRO",
+                    "children": ["MUN_VALVERDE", "MUN_FRONTERA_20070908", "MUN_PINAR_HIERRO"]
+                },
+                {
+                    "id": "municipalities_ISLA_GOMERA",
+                    "i18n_title": "zones.municipalities.ISLA_GOMERA",
+                    "children": [
+                        "MUN_AGULO",
+                        "MUN_ALAJERO",
+                        "MUN_HERMIGUA",
+                        "MUN_SAN_SEBASTIAN_GOMERA",
+                        "MUN_VALLEHERMOSO",
+                        "MUN_VALLE_GRAN_REY"
+                    ]
+                },
+                {
+                    "id": "municipalities_ISLA_FUERTEVENTURA",
+                    "i18n_title": "zones.municipalities.ISLA_FUERTEVENTURA",
+                    "children": [
+                        "MUN_ANTIGUA",
+                        "MUN_BETANCURIA",
+                        "MUN_OLIVA",
+                        "MUN_PAJARA",
+                        "MUN_TUINEJE",
+                        "MUN_PUERTO_ROSARIO"
+                    ]
+                },
+                {
+                    "id": "municipalities_ISLA_LANZAROTE",
+                    "i18n_title": "zones.municipalities.ISLA_LANZAROTE",
+                    "children": [
+                        "MUN_TEGUISE",
+                        "MUN_TIAS",
+                        "MUN_TINAJO",
+                        "MUN_YAIZA",
+                        "MUN_SAN_BARTOLOME",
+                        "MUN_ARRECIFE",
+                        "MUN_HARIA"
+                    ]
+                },
+                {
+                    "id": "municipalities_ISLA_TENERIFE",
+                    "i18n_title": "zones.municipalities.ISLA_TENERIFE",
+                    "children": [
+                        "MUN_ADEJE",
+                        "MUN_ARAFO",
+                        "MUN_ARICO",
+                        "MUN_ARONA",
+                        "MUN_BUENAVISTA_NORTE",
+                        "MUN_CANDELARIA",
+                        "MUN_FASNIA",
+                        "MUN_GARACHICO",
+                        "MUN_GRANADILLA_ABONA",
+                        "MUN_GUANCHA",
+                        "MUN_GUIA_ISORA",
+                        "MUN_GUIMAR",
+                        "MUN_ICOD_VINOS",
+                        "MUN_MATANZA_ACENTEJO",
+                        "MUN_OROTAVA",
+                        "MUN_PUERTO_CRUZ",
+                        "MUN_REALEJOS",
+                        "MUN_ROSARIO",
+                        "MUN_SANTA_CRUZ_TENERIFE",
+                        "MUN_SANTA_URSULA",
+                        "MUN_SANTIAGO_TEIDE",
+                        "MUN_SAN_CRISTOBAL_LAGUNA",
+                        "MUN_SAN_JUAN_RAMBLA",
+                        "MUN_SAN_MIGUEL_ABONA",
+                        "MUN_SAUZAL",
+                        "MUN_SILOS",
+                        "MUN_TACORONTE",
+                        "MUN_TANQUE",
+                        "MUN_TEGUESTE",
+                        "MUN_VICTORIA_ACENTEJO",
+                        "MUN_VILAFLOR_CHASNA"
+                    ]
+                },
+                {
+                    "id": "municipalities_ISLA_GRAN_CANARIA",
+                    "i18n_title": "zones.municipalities.ISLA_GRAN_CANARIA",
+                    "children": [
+                        "MUN_AGAETE",
+                        "MUN_AGUIMES",
+                        "MUN_ALDEA_SAN_NICOLAS",
+                        "MUN_ARTENARA",
+                        "MUN_ARUCAS",
+                        "MUN_FIRGAS",
+                        "MUN_GALDAR",
+                        "MUN_INGENIO",
+                        "MUN_MOGAN",
+                        "MUN_MOYA",
+                        "MUN_PALMAS_GRAN_CANARIA",
+                        "MUN_SANTA_BRIGIDA",
+                        "MUN_SANTA_LUCIA_TIRAJANA",
+                        "MUN_SANTA_MARIA_GUIA_GRAN_CANARIA",
+                        "MUN_SAN_BARTOLOME_TIRAJANA",
+                        "MUN_TEJEDA",
+                        "MUN_TELDE",
+                        "MUN_TEROR",
+                        "MUN_VALSEQUILLO_GRAN_CANARIA",
+                        "MUN_VEGA_SAN_MATEO",
+                        "MUN_VALLESECO"
+                    ]
+                }
+            ]
+        }
+    ]
+}

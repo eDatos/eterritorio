@@ -1,17 +1,19 @@
 import { HttpClient } from "@angular/common/http";
 import { Injectable } from "@angular/core";
 
-import { Observable, shareReplay, switchMap } from "rxjs";
+import { Observable, shareReplay } from "rxjs";
 
-import { Properties } from "@app/core/config";
+import { Properties, Territories } from "@app/core/config";
 
 @Injectable({
     providedIn: "root",
 })
 export class ConfigService {
     static PROPERTIES_FILE_URL = "assets/properties.json";
+    static TERRITORIES_FILE_URL = "assets/territories/territories.json";
 
     private properties$ = this.http.get<Properties>(ConfigService.PROPERTIES_FILE_URL).pipe(shareReplay(1));
+    private territories$ = this.http.get<Territories>(ConfigService.TERRITORIES_FILE_URL).pipe(shareReplay(1));
 
     constructor(private http: HttpClient) {}
 
@@ -25,13 +27,9 @@ export class ConfigService {
     }
 
     /**
-     * Returns a list of territories, separated by layers, one of which is usually displayed on the main page.
+     * Returns the object of territories.
      */
-    getTerritories(): Observable<any> {
-        return this.getProperties().pipe(
-            switchMap((properties) => {
-                return this.http.get(`assets/territories/${properties.config.territoryNutsCode.toLowerCase()}.json`);
-            })
-        );
+    getTerritories(): Observable<Territories> {
+        return this.territories$;
     }
 }

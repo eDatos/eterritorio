@@ -1,7 +1,4 @@
 {
-    "config": {
-        "territoryNutsCode": "ES70"
-    },
     "endpoints": {
         "cmetadata": {
             "url": "https://estadisticas.arte-consultores.com/cmetadata/v1.0"

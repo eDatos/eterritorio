@@ -12,7 +12,6 @@ import { DatasetService, PropertiesService } from "@app/core/service";
     styleUrls: ["./territory.component.scss"],
 })
 export class TerritoryComponent implements OnInit {
-    territoryNutsCode: string;
     datasets?: Dataset[];
     loading = false;
     variableElementId?: string;
@@ -21,9 +20,7 @@ export class TerritoryComponent implements OnInit {
         private route: ActivatedRoute,
         private propertiesService: PropertiesService,
         private datasetService: DatasetService
-    ) {
-        this.territoryNutsCode = this.propertiesService.getTerritoryNutsCode();
-    }
+    ) {}
 
     ngOnInit(): void {
         this.route.params.subscribe((params) => {
