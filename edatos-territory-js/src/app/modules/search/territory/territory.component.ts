@@ -1,6 +1,8 @@
 import { Component, OnInit } from "@angular/core";
+import { Title } from "@angular/platform-browser";
 import { ActivatedRoute } from "@angular/router";
 
+import { TranslateService } from "@ngx-translate/core";
 import { finalize, forkJoin } from "rxjs";
 
 import { Dataset } from "@app/core/model";
@@ -19,12 +21,15 @@ export class TerritoryComponent implements OnInit {
     constructor(
         private route: ActivatedRoute,
         private propertiesService: PropertiesService,
-        private datasetService: DatasetService
+        private datasetService: DatasetService,
+        private translateService: TranslateService,
+        private title: Title
     ) {}
 
     ngOnInit(): void {
         this.route.params.subscribe((params) => {
             const variableElementId = params["variableElementId"];
+            this.title.setTitle("Datasets - " + this.translateService.instant(`territories.${variableElementId}`));
             this.init(variableElementId);
         });
     }
