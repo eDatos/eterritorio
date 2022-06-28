@@ -14,5 +14,8 @@
             "title": "Datasets por operación estadística"
         },
         "title": "Buscar datasets por territorios"
+    },
+    "territories": {
+        "title": "Datasets - {{territory}}"
     }
 }

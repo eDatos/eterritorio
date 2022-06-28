@@ -29,7 +29,9 @@ export class TerritoryComponent implements OnInit {
     ngOnInit(): void {
         this.route.params.subscribe((params) => {
             const variableElementId = params["variableElementId"];
-            this.title.setTitle("Datasets - " + this.translateService.instant(`territories.${variableElementId}`));
+            const territoryName = this.translateService.instant(`territories.${variableElementId}`);
+            const title = this.translateService.instant("territories.title", { territory: territoryName });
+            this.title.setTitle(title);
             this.init(variableElementId);
         });
     }
