@@ -5,11 +5,10 @@ type Properties = typeof PROPERTIES;
 export { Properties };
 
 export interface Territories {
-    zones: Zone[];
+    groups: Group[];
 }
 
-export interface Zone {
+export interface Group {
     id: string;
-    i18n_title: string;
-    codes: (string | { id: string; i18n_title: string; children: string[] })[];
+    children: { id: string; codes?: string[] }[];
 }

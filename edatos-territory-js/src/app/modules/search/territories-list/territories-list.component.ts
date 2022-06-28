@@ -1,6 +1,6 @@
 import { Component, OnInit } from "@angular/core";
 
-import { Territories, Zone } from "@app/core/config";
+import { Group, Territories } from "@app/core/config";
 import { ConfigService } from "@app/core/service";
 
 @Component({
@@ -9,7 +9,7 @@ import { ConfigService } from "@app/core/service";
     styleUrls: ["./territories-list.component.scss"],
 })
 export class TerritoriesListComponent implements OnInit {
-    zones: Zone[] = [];
+    groups: Group[] = [];
 
     constructor(private configService: ConfigService) {}
 
@@ -20,10 +20,6 @@ export class TerritoriesListComponent implements OnInit {
     }
 
     init(territories: Territories) {
-        this.zones = territories.zones;
-    }
-
-    isString(elem: string | { id: string; i18n_title: string; children: string[] }): elem is string {
-        return typeof elem === "string";
+        this.groups = territories.groups;
     }
 }

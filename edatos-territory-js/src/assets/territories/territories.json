@@ -1,33 +1,55 @@
 {
     "//": "NOTE: after updating the list make sure you also update i18n files accordingly",
-    "zones": [
+    "groups": [
         {
             "id": "ccaaProv",
-            "i18n_title": "zones.ccaaProv.title",
-            "codes": ["CCAA_CANARIAS", "PROV_LAS_PALMAS", "PROV_SANTA_CRUZ_TENERIFE"]
+            "children": [
+                {
+                    "id": "CCAA_CANARIAS"
+                },
+                {
+                    "id": "PROV_LAS_PALMAS"
+                },
+                {
+                    "id": "PROV_SANTA_CRUZ_TENERIFE"
+                }
+            ]
         },
         {
             "id": "islands",
-            "i18n_title": "zones.islands.title",
-            "codes": [
-                "ISLA_LA_PALMA",
-                "ISLA_HIERRO",
-                "ISLA_GOMERA",
-                "ISLA_TENERIFE",
-                "ISLA_GRAN_CANARIA",
-                "ISLA_FUERTEVENTURA",
-                "ISLA_LANZAROTE",
-                "ISLA_GRACIOSA"
+            "children": [
+                {
+                    "id": "ISLA_LA_PALMA"
+                },
+                {
+                    "id": "ISLA_HIERRO"
+                },
+                {
+                    "id": "ISLA_GOMERA"
+                },
+                {
+                    "id": "ISLA_TENERIFE"
+                },
+                {
+                    "id": "ISLA_GRAN_CANARIA"
+                },
+                {
+                    "id": "ISLA_FUERTEVENTURA"
+                },
+                {
+                    "id": "ISLA_LANZAROTE"
+                },
+                {
+                    "id": "ISLA_GRACIOSA"
+                }
             ]
         },
         {
             "id": "municipalities",
-            "i18n_title": "zones.municipalities.title",
-            "codes": [
+            "children": [
                 {
-                    "id": "municipalities_ISLA_LA_PALMA",
-                    "i18n_title": "zones.municipalities.ISLA_LA_PALMA",
-                    "children": [
+                    "id": "ISLA_LA_PALMA",
+                    "codes": [
                         "MUN_BARLOVENTO",
                         "MUN_BRENIA_ALTA",
                         "MUN_BRENIA_BAJA",
@@ -45,14 +67,12 @@
                     ]
                 },
                 {
-                    "id": "municipalities_ISLA_HIERRO",
-                    "i18n_title": "zones.municipalities.ISLA_HIERRO",
-                    "children": ["MUN_VALVERDE", "MUN_FRONTERA_20070908", "MUN_PINAR_HIERRO"]
+                    "id": "ISLA_HIERRO",
+                    "codes": ["MUN_VALVERDE", "MUN_FRONTERA_20070908", "MUN_PINAR_HIERRO"]
                 },
                 {
-                    "id": "municipalities_ISLA_GOMERA",
-                    "i18n_title": "zones.municipalities.ISLA_GOMERA",
-                    "children": [
+                    "id": "ISLA_GOMERA",
+                    "codes": [
                         "MUN_AGULO",
                         "MUN_ALAJERO",
                         "MUN_HERMIGUA",
@@ -62,9 +82,8 @@
                     ]
                 },
                 {
-                    "id": "municipalities_ISLA_FUERTEVENTURA",
-                    "i18n_title": "zones.municipalities.ISLA_FUERTEVENTURA",
-                    "children": [
+                    "id": "ISLA_FUERTEVENTURA",
+                    "codes": [
                         "MUN_ANTIGUA",
                         "MUN_BETANCURIA",
                         "MUN_OLIVA",
@@ -74,9 +93,8 @@
                     ]
                 },
                 {
-                    "id": "municipalities_ISLA_LANZAROTE",
-                    "i18n_title": "zones.municipalities.ISLA_LANZAROTE",
-                    "children": [
+                    "id": "ISLA_LANZAROTE",
+                    "codes": [
                         "MUN_TEGUISE",
                         "MUN_TIAS",
                         "MUN_TINAJO",
@@ -87,9 +105,8 @@
                     ]
                 },
                 {
-                    "id": "municipalities_ISLA_TENERIFE",
-                    "i18n_title": "zones.municipalities.ISLA_TENERIFE",
-                    "children": [
+                    "id": "ISLA_TENERIFE",
+                    "codes": [
                         "MUN_ADEJE",
                         "MUN_ARAFO",
                         "MUN_ARICO",
@@ -124,9 +141,8 @@
                     ]
                 },
                 {
-                    "id": "municipalities_ISLA_GRAN_CANARIA",
-                    "i18n_title": "zones.municipalities.ISLA_GRAN_CANARIA",
-                    "children": [
+                    "id": "ISLA_GRAN_CANARIA",
+                    "codes": [
                         "MUN_AGAETE",
                         "MUN_AGUIMES",
                         "MUN_ALDEA_SAN_NICOLAS",

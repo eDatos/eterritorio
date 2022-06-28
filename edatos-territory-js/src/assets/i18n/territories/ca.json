@@ -1,4 +1,16 @@
 {
+    "groups": {
+        "ISLA_FUERTEVENTURA": "Fuerteventura",
+        "ISLA_GOMERA": "La Gomera",
+        "ISLA_GRAN_CANARIA": "Gran Canaria",
+        "ISLA_HIERRO": "El Hierro",
+        "ISLA_LANZAROTE": "Lanzarote",
+        "ISLA_LA_PALMA": "La Palma",
+        "ISLA_TENERIFE": "Tenerife",
+        "ccaaProv": "Comunitats autònomes i províncies",
+        "islands": "Illes",
+        "municipalities": "Municipis"
+    },
     "territories": {
         "CCAA_CANARIAS": "Canàries",
         "ISLA_FUERTEVENTURA": "Fuerteventura (Illa)",
@@ -101,23 +113,5 @@
         "MUN_YAIZA": "Yaiza",
         "PROV_LAS_PALMAS": "Las Palmas (Província)",
         "PROV_SANTA_CRUZ_TENERIFE": "Santa Cruz de Tenerife (Província)"
-    },
-    "zones": {
-        "ccaaProv": {
-            "title": "Comunitats autònomes i províncies"
-        },
-        "islands": {
-            "title": "Illes"
-        },
-        "municipalities": {
-            "ISLA_FUERTEVENTURA": "Fuerteventura",
-            "ISLA_GOMERA": "La Gomera",
-            "ISLA_GRAN_CANARIA": "Gran Canaria",
-            "ISLA_HIERRO": "El Hierro",
-            "ISLA_LANZAROTE": "Lanzarote",
-            "ISLA_LA_PALMA": "La Palma",
-            "ISLA_TENERIFE": "Tenerife",
-            "title": "Municipis"
-        }
     }
 }

@@ -1,20 +1,20 @@
-<div class="territories-columns" *ngIf="zones">
-    <div *ngFor="let zone of zones" class="zones">
-        <h3>{{ zone.i18n_title | translate }}</h3>
+<div class="territories-columns" *ngIf="groups">
+    <div *ngFor="let group of groups" class="zones">
+        <h3>{{ "groups." + group.id | translate }}</h3>
 
-        <div *ngFor="let elem of zone.codes" class="territories-list">
+        <div *ngFor="let child of group.children" class="territories-list">
             <div class="territories">
-                <a *ngIf="isString(elem)" class="underline-link" [href]="elem">
-                    {{ "territories." + elem | translate }}
+                <a *ngIf="child.codes === undefined" class="underline-link" [href]="child.id">
+                    {{ "territories." + child.id | translate }}
                 </a>
             </div>
 
-            <div *ngIf="!isString(elem)" class="territories-list">
-                <h4>{{ elem.i18n_title | translate }}</h4>
+            <div *ngIf="child.codes !== undefined" class="territories-list">
+                <h4>{{ "groups." + child.id | translate }}</h4>
 
                 <div class="territories">
-                    <a *ngFor="let territory of elem.children" class="underline-link" [href]="territory">
-                        {{ "territories." + territory | translate }}
+                    <a *ngFor="let code of child.codes" class="underline-link" [href]="code">
+                        {{ "territories." + code | translate }}
                     </a>
                 </div>
             </div>
