@@ -13,15 +13,15 @@
     },
     "territories": {
         "CCAA_CANARIAS": "Canàries",
-        "ISLA_FUERTEVENTURA": "Fuerteventura (Illa)",
-        "ISLA_GOMERA": "La Gomera (Illa)",
-        "ISLA_GRACIOSA": "La Graciosa (Illa)",
-        "ISLA_GRAN_CANARIA": "Gran Canaria (Illa)",
-        "ISLA_HIERRO": "El Hierro (Illa)",
-        "ISLA_LANZAROTE": "Lanzarote (Illa)",
-        "ISLA_LA_PALMA": "La Palma (Illa)",
+        "ISLA_FUERTEVENTURA": "Fuerteventura",
+        "ISLA_GOMERA": "La Gomera",
+        "ISLA_GRACIOSA": "La Graciosa",
+        "ISLA_GRAN_CANARIA": "Gran Canaria",
+        "ISLA_HIERRO": "El Hierro",
+        "ISLA_LANZAROTE": "Lanzarote",
+        "ISLA_LA_PALMA": "La Palma",
         "ISLA_SAN_BARTOLOME": "San Bartolomé",
-        "ISLA_TENERIFE": "Tenerife (Illa)",
+        "ISLA_TENERIFE": "Tenerife",
         "MUN_ADEJE": "Adeje",
         "MUN_AGAETE": "Agaete",
         "MUN_AGUIMES": "Agüimes",
@@ -111,7 +111,7 @@
         "MUN_VILAFLOR_CHASNA": "Vilaflor de Chasna",
         "MUN_VILLA_MAZO": "Villa de Mazo",
         "MUN_YAIZA": "Yaiza",
-        "PROV_LAS_PALMAS": "Las Palmas (Província)",
-        "PROV_SANTA_CRUZ_TENERIFE": "Santa Cruz de Tenerife (Província)"
+        "PROV_LAS_PALMAS": "Las Palmas",
+        "PROV_SANTA_CRUZ_TENERIFE": "Santa Cruz de Tenerife"
     }
 }
