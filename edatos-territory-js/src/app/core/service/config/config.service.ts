@@ -17,18 +17,10 @@ export class ConfigService {
 
     constructor(private http: HttpClient) {}
 
-    /**
-     * Request to get the app properties.
-     * @return object of properties.
-     * @see ConfigService.PROPERTIES_FILE_URL
-     */
     getProperties(): Observable<Properties> {
         return this.properties$;
     }
 
-    /**
-     * Returns the object of territories.
-     */
     getTerritories(): Observable<Territories> {
         return this.territories$;
     }
