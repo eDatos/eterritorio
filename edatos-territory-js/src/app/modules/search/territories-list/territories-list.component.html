@@ -1,20 +1,19 @@
 <div class="territories-columns" *ngIf="groups">
-    <div *ngFor="let group of groups" class="zones">
-        <h3>{{ "groups." + group.id | translate }}</h3>
-
+    <div *ngFor="let group of groups" class="groups">
+        <h3>{{ "nodes." + group.id | translate }}</h3>
         <div *ngFor="let child of group.children" class="territories-list">
             <div class="territories">
                 <a *ngIf="child.codes === undefined" class="underline-link" [href]="child.id">
-                    {{ "territories." + child.id | translate }}
+                    {{ "nodes." + child.id | translate }}
                 </a>
             </div>
 
             <div *ngIf="child.codes !== undefined" class="territories-list">
-                <h4>{{ "groups." + child.id | translate }}</h4>
+                <h4>{{ "nodes." + child.id | translate }}</h4>
 
                 <div class="territories">
                     <a *ngFor="let code of child.codes" class="underline-link" [href]="code">
-                        {{ "territories." + code | translate }}
+                        {{ "nodes." + code | translate }}
                     </a>
                 </div>
             </div>
