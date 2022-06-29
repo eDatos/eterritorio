@@ -1,12 +1,11 @@
 .territories-columns {
-    width: 100%;
     display: flex;
-    justify-content: space-between;
     flex-wrap: wrap;
-    gap: 2em;
+    column-gap: 4em;
+    row-gap: 2em;
 }
 
-.zones {
+.groups {
     min-width: 12em;
     max-width: 14em;
 }
