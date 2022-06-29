@@ -30,7 +30,6 @@ export class PropertiesService {
     private properties: any;
 
     private commonMetadataUrl!: string;
-    private territoryNutsCode!: string;
 
     constructor(private http: HttpClient, private configService: ConfigService) {}
 
@@ -60,7 +59,6 @@ export class PropertiesService {
                  * Add here the values that you need from the config file.
                  */
                 this.commonMetadataUrl = props.endpoints.cmetadata.url;
-                this.territoryNutsCode = props.config.territoryNutsCode;
 
                 /**
                  * Add here the properties you need to request to common-metadata.
@@ -99,14 +97,6 @@ export class PropertiesService {
 
             catchError(() => of(new Error(key)))
         );
-    }
-
-    requestTerritoryCodes(nutsCode: string = this.territoryNutsCode): Observable<string[]> {
-        return this.http.get<string[]>(`assets/territories/${nutsCode.toLowerCase()}.json`);
-    }
-
-    getTerritoryNutsCode(): string {
-        return this.territoryNutsCode;
     }
 
     getLayoutHeaderUrl(): string {

@@ -1,6 +1,8 @@
 import { Component, OnInit } from "@angular/core";
+import { Title } from "@angular/platform-browser";
 import { ActivatedRoute } from "@angular/router";
 
+import { TranslateService } from "@ngx-translate/core";
 import { finalize, forkJoin } from "rxjs";
 
 import { Dataset } from "@app/core/model";
@@ -12,7 +14,6 @@ import { DatasetService, PropertiesService } from "@app/core/service";
     styleUrls: ["./territory.component.scss"],
 })
 export class TerritoryComponent implements OnInit {
-    territoryNutsCode: string;
     datasets?: Dataset[];
     loading = false;
     variableElementId?: string;
@@ -20,14 +21,17 @@ export class TerritoryComponent implements OnInit {
     constructor(
         private route: ActivatedRoute,
         private propertiesService: PropertiesService,
-        private datasetService: DatasetService
-    ) {
-        this.territoryNutsCode = this.propertiesService.getTerritoryNutsCode();
-    }
+        private datasetService: DatasetService,
+        private translateService: TranslateService,
+        private title: Title
+    ) {}
 
     ngOnInit(): void {
         this.route.params.subscribe((params) => {
             const variableElementId = params["variableElementId"];
+            const territoryName = this.translateService.instant(`territories.${variableElementId}`);
+            const title = this.translateService.instant("territories.title", { territory: territoryName });
+            this.title.setTitle(title);
             this.init(variableElementId);
         });
     }

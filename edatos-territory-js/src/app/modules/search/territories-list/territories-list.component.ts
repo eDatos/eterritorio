@@ -1,6 +1,7 @@
 import { Component, OnInit } from "@angular/core";
 
-import { ConfigService, PropertiesService } from "@app/core/service";
+import { Group, Territories } from "@app/core/config";
+import { ConfigService } from "@app/core/service";
 
 @Component({
     selector: "app-territories-list",
@@ -8,36 +9,17 @@ import { ConfigService, PropertiesService } from "@app/core/service";
     styleUrls: ["./territories-list.component.scss"],
 })
 export class TerritoriesListComponent implements OnInit {
-    ccaaTerritories: string[] = [];
-    provTerritories: string[] = [];
-    islandTerritories: string[] = [];
-    munTerritories: string[] = [];
-    nutsCode?: string;
+    groups: Group[] = [];
 
-    constructor(private configService: ConfigService, private propertiesService: PropertiesService) {}
+    constructor(private configService: ConfigService) {}
 
     ngOnInit(): void {
         this.configService.getTerritories().subscribe((territories) => {
             this.init(territories);
         });
-
-        this.nutsCode = this.propertiesService.getTerritoryNutsCode();
     }
 
-    private init(territories: any) {
-        const zoneToShow = territories.zones.find((zone: any) => zone.id === territories.zoneIdToShow);
-        for (const code of zoneToShow.codes) {
-            if (code.startsWith("CCAA")) {
-                this.ccaaTerritories.push(code);
-            } else if (code.startsWith("PROV")) {
-                this.provTerritories.push(code);
-            } else if (code.startsWith("ISLA")) {
-                this.islandTerritories.push(code);
-            } else if (code.startsWith("MUN")) {
-                this.munTerritories.push(code);
-            } else {
-                throw new Error("could not detect the type of the territory: " + code);
-            }
-        }
+    init(territories: Territories) {
+        this.groups = territories.groups;
     }
 }

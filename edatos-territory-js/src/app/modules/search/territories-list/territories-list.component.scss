@@ -6,6 +6,16 @@
     gap: 2em;
 }
 
-.territories-list {
+.zones {
     min-width: 12em;
+    max-width: 14em;
+}
+
+.territories {
+    display: flex;
+    flex-direction: column;
+
+    a {
+        width: fit-content;
+    }
 }

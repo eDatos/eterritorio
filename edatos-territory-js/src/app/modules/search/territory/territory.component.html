@@ -1,4 +1,4 @@
-<h1>{{ "territories." + territoryNutsCode + "." + variableElementId | translate }}</h1>
+<h1>{{ "territories." + variableElementId | translate }}</h1>
 <app-operations-list *ngIf="datasets; else loading" [datasets]="datasets"></app-operations-list>
 <ng-template #loading>
     <p-progressSpinner></p-progressSpinner>
