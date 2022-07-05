@@ -98,7 +98,7 @@
                 <filtering>true</filtering>
                 <directory>${project.basedir}/src/main/resources</directory>
                 <includes>
-                    <include>*</include>
+                    <include>**/*</include>
                 </includes>
             </resource>
         </resources>
