@@ -1,22 +1,28 @@
-<div class="territories-columns" *ngIf="groups">
-    <div *ngFor="let group of groups" class="groups">
+<ul class="groups">
+    <li *ngFor="let group of groups">
         <h3>{{ "nodes." + group.id | translate }}</h3>
-        <div *ngFor="let child of group.children" class="territories-list">
-            <div class="territories">
+        <ul>
+            <li *ngFor="let child of group.children">
                 <a *ngIf="child.codes === undefined" class="underline-link" [routerLink]="child.id">
                     {{ "nodes." + child.id | translate }}
                 </a>
-            </div>
-
-            <div *ngIf="child.codes !== undefined" class="territories-list">
-                <h4>{{ "nodes." + child.id | translate }}</h4>
-
-                <div class="territories">
-                    <a *ngFor="let code of child.codes" class="underline-link" [routerLink]="code">
-                        {{ "nodes." + code | translate }}
-                    </a>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
+                <ng-container *ngIf="child.codes !== undefined">
+                    <!--Caret prevents doubleclick selection but allows drag selection-->
+                    <span
+                        #caret
+                        class="caret"
+                        (click)="caret.classList.toggle('active')"
+                        (mousedown)="$event.detail > 1 ? $event.preventDefault() : true"
+                    >
+                        {{ "nodes." + child.id | translate }}
+                    </span>
+                    <ul>
+                        <li *ngFor="let code of child.codes">
+                            <a class="underline-link" [routerLink]="code">{{ "nodes." + code | translate }}</a>
+                        </li>
+                    </ul>
+                </ng-container>
+            </li>
+        </ul>
+    </li>
+</ul>
