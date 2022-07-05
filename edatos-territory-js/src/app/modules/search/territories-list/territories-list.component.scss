@@ -1,20 +1,47 @@
-.territories-columns {
-    display: flex;
-    flex-wrap: wrap;
-    column-gap: 4em;
-    row-gap: 2em;
+ul {
+    line-height: 1.5em;
+    padding: 0;
+    list-style: none;
 }
 
 .groups {
-    min-width: 12em;
-    max-width: 14em;
+    display: flex;
+    flex-grow: 0;
+    flex-wrap: wrap;
+    column-gap: 4em;
+    row-gap: 2em;
+
+    & > li {
+        min-width: 18em;
+        max-width: 18em;
+    }
 }
 
-.territories {
-    display: flex;
-    flex-direction: column;
+.caret {
+    cursor: pointer;
 
-    a {
-        width: fit-content;
+    &::before {
+        font-family: "Font Awesome 6 Free", serif;
+        content: "\2b"; // "+"
+        font-weight: 600;
+        font-size: 0.8rem;
+        color: black;
+        display: inline-block;
+        margin-right: 6px;
+    }
+
+    &.active {
+        & + ul {
+            display: block;
+            margin: 1em 0 1em 2em;
+        }
+
+        &::before {
+            content: "\f068"; // "-"
+        }
+    }
+
+    & + ul {
+        display: none;
     }
 }
