@@ -74,6 +74,6 @@ export function configureTranslationService(translateService: TranslateService):
             multi: true,
         },
     ],
-    bootstrap: [Toast, ProgressSpinner, AppComponent],
+    bootstrap: [AppComponent],
 })
 export class AppModule {}
