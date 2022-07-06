@@ -14,5 +14,6 @@ import { SharedModule } from "@app/shared";
 @NgModule({
     declarations: [SearchTerritoryComponent, TerritoriesListComponent, TerritoryComponent],
     imports: [CommonModule, SharedModule, PaginatorModule, TranslateModule, ProgressSpinnerModule],
+    exports: [SearchTerritoryComponent],
 })
 export class SearchModule {}
