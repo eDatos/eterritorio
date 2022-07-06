@@ -1,4 +1,7 @@
 {
+    "app": {
+        "name": "eTerritorios"
+    },
     "error": {
         "404": {
             "detail": "Pàgina no trobada",
