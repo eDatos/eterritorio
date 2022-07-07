@@ -19,7 +19,7 @@ import { AVAILABLE_LANGS, DEFAULT_LANG } from "@app/app.constants";
 import { PropertiesService } from "@app/core/service";
 import { ErrorModule } from "@app/modules/error";
 import { LayoutModule } from "@app/modules/layout";
-import { SearchModule } from "@app/modules/search";
+import { TerritoryModule } from "@app/modules/territory";
 
 export function createTranslateLoader(http: HttpClient) {
     return new MultiTranslateHttpLoader(http, [
@@ -42,7 +42,7 @@ export function configureTranslationService(translateService: TranslateService):
         HttpClientModule,
         BrowserAnimationsModule,
         LayoutModule,
-        SearchModule,
+        TerritoryModule,
         ErrorModule,
         LoadingBarHttpClientModule,
         LoadingBarRouterModule,

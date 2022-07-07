@@ -6,14 +6,12 @@ import { ProgressSpinnerModule } from "primeng/progressspinner";
 
 import { TranslateModule } from "@ngx-translate/core";
 
-import { SearchTerritoryComponent } from "@app/modules/search/search-territory";
-import { TerritoriesListComponent } from "@app/modules/search/territories-list";
-import { TerritoryComponent } from "@app/modules/search/territory";
+import { TerritoriesListComponent, TerritoryInfoComponent } from "@app/modules/territory";
 import { SharedModule } from "@app/shared";
 
 @NgModule({
-    declarations: [SearchTerritoryComponent, TerritoriesListComponent, TerritoryComponent],
+    declarations: [TerritoriesListComponent, TerritoryInfoComponent],
     imports: [CommonModule, SharedModule, PaginatorModule, TranslateModule, ProgressSpinnerModule],
-    exports: [SearchTerritoryComponent],
+    exports: [],
 })
-export class SearchModule {}
+export class TerritoryModule {}

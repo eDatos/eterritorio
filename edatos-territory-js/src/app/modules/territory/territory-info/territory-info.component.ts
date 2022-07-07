@@ -9,11 +9,11 @@ import { Dataset } from "@app/core/model";
 import { DatasetService, PropertiesService } from "@app/core/service";
 
 @Component({
-    selector: "app-territory",
-    templateUrl: "./territory.component.html",
-    styleUrls: ["./territory.component.scss"],
+    selector: "app-territory-info",
+    templateUrl: "./territory-info.component.html",
+    styleUrls: ["./territory-info.component.scss"],
 })
-export class TerritoryComponent implements OnInit {
+export class TerritoryInfoComponent implements OnInit {
     datasets?: Dataset[];
     loading = false;
     territoryId?: string;
@@ -30,7 +30,7 @@ export class TerritoryComponent implements OnInit {
         this.route.params.subscribe((params) => {
             const territoryId = params["territoryId"];
             const territoryName = this.translateService.instant(`nodes.${territoryId}`);
-            const title = this.translateService.instant("territories.title", { territory: territoryName });
+            const title = this.translateService.instant("territory.page.title", { territory: territoryName });
             this.title.setTitle(title);
             this.init(territoryId);
         });

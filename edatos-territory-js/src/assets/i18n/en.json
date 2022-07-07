@@ -1,6 +1,9 @@
 {
     "app": {
-        "name": "eTerritorios"
+        "name": "eTerritorios",
+        "page": {
+            "title": "Dataset finder by territory"
+        }
     },
     "error": {
         "404": {
@@ -8,17 +11,23 @@
             "title": "Error 404"
         }
     },
-    "search": {
+    "navbar": {
         "autocomplete": {
-            "placeholder": "Search here: Canarias, La Orotava, Agaete, Las Palmas..."
-        },
-        "operations-tree": {
-            "empty": "There are no datasets assigned to this statistical operation",
-            "title": "Datasets by statistical operation"
-        },
-        "title": "Search datasets by territories"
+            "placeholder": "Find territories"
+        }
     },
     "territories": {
-        "title": "Datasets - {{territory}}"
+        "header": {
+            "title": "Search datasets by territories"
+        }
+    },
+    "territory": {
+        "operations-tree": {
+            "empty": "There are no datasets containing information about this territory",
+            "title": "Datasets by statistical operation"
+        },
+        "page": {
+            "title": "Datasets - {{territory}}"
+        }
     }
 }
