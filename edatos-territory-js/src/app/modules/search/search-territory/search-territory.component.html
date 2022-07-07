@@ -3,12 +3,6 @@
         <h1 class="search__header-title">{{ "search.title" | translate }}</h1>
 
         <app-territories-list *ngIf="!datasetDto"></app-territories-list>
-        <!--EDATOS-3622: Search is temporarily hidden, IBESTAT doesn't use it-->
-        <!--<app-territory-autocomplete
-            class="search__input-autocomplete"
-            [(name)]="territoryName"
-            (searchEvent)="search({ territoryName: $event })"
-        ></app-territory-autocomplete>-->
     </header>
 
     <div class="search__body">
