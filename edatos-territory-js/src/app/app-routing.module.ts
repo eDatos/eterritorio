@@ -11,7 +11,7 @@ const ROUTES: Routes = [
         component: SearchTerritoryComponent,
     },
     {
-        path: ":variableElementId",
+        path: "territory/:territoryId",
         component: TerritoryComponent,
     },
     {

@@ -1,5 +1,5 @@
-<h1>{{ "nodes." + variableElementId | translate }}</h1>
-<app-operations-list *ngIf="datasets; else loading" [datasets]="datasets"></app-operations-list>
-<ng-template #loading>
+<h1>{{ "nodes." + territoryId | translate }}</h1>
+<app-operations-list *ngIf="!loading; else spinner" [datasets]="datasets"></app-operations-list>
+<ng-template #spinner>
     <p-progressSpinner></p-progressSpinner>
 </ng-template>

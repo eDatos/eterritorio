@@ -16,7 +16,7 @@ import { DatasetService, PropertiesService } from "@app/core/service";
 export class TerritoryComponent implements OnInit {
     datasets?: Dataset[];
     loading = false;
-    variableElementId?: string;
+    territoryId?: string;
 
     constructor(
         private route: ActivatedRoute,
@@ -28,21 +28,21 @@ export class TerritoryComponent implements OnInit {
 
     ngOnInit(): void {
         this.route.params.subscribe((params) => {
-            const variableElementId = params["variableElementId"];
-            const territoryName = this.translateService.instant(`territories.${variableElementId}`);
+            const territoryId = params["territoryId"];
+            const territoryName = this.translateService.instant(`nodes.${territoryId}`);
             const title = this.translateService.instant("territories.title", { territory: territoryName });
             this.title.setTitle(title);
-            this.init(variableElementId);
+            this.init(territoryId);
         });
     }
 
-    init(variableElementId: string) {
+    init(territoryId: string) {
         this.loading = true;
-        this.variableElementId = variableElementId;
+        this.territoryId = territoryId;
 
         const agencyId = this.propertiesService.getOrganization();
 
-        this.datasetService.getDatasetsByTerritoryVariableElementId(this.variableElementId).subscribe((datasets) => {
+        this.datasetService.getDatasetsByTerritoryVariableElementId(this.territoryId).subscribe((datasets) => {
             const observables$ = [];
 
             for (const dataset of datasets.dataset) {
