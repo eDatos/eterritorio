@@ -1,7 +1,7 @@
 @import "src/styles/vendor";
 
 body {
-    font-family: Inter, serif;
+    font-family: var(--font-family), serif;
 }
 
 // see https://css-irl.info/animating-underlines/
