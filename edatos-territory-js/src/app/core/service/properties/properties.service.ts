@@ -122,4 +122,52 @@ export class PropertiesService {
     getOrganization() {
         return this.properties.organisation;
     }
+
+    getTerritoriesList() {
+        // TODO(EDATOS-3675)
+        return [
+            "CCAA_CANARIAS",
+            "PROV_LAS_PALMAS",
+            "PROV_SANTA_CRUZ_TENERIFE",
+            "ISLA_LA_PALMA",
+            "ISLA_HIERRO",
+            "ISLA_GOMERA",
+            "ISLA_TENERIFE",
+            "ISLA_GRAN_CANARIA",
+            "ISLA_FUERTEVENTURA",
+            "ISLA_LANZAROTE",
+            "ISLA_GRACIOSA",
+            "MUN_ADEJE",
+            "MUN_ARAFO",
+            "MUN_ARICO",
+            "MUN_ARONA",
+            "MUN_BUENAVISTA_NORTE",
+            "MUN_CANDELARIA",
+            "MUN_FASNIA",
+            "MUN_GARACHICO",
+            "MUN_GRANADILLA_ABONA",
+            "MUN_GUANCHA",
+            "MUN_GUIA_ISORA",
+            "MUN_GUIMAR",
+            "MUN_ICOD_VINOS",
+            "MUN_MATANZA_ACENTEJO",
+            "MUN_OROTAVA",
+            "MUN_PUERTO_CRUZ",
+            "MUN_REALEJOS",
+            "MUN_ROSARIO",
+            "MUN_SANTA_CRUZ_TENERIFE",
+            "MUN_SANTA_URSULA",
+            "MUN_SANTIAGO_TEIDE",
+            "MUN_SAN_CRISTOBAL_LAGUNA",
+            "MUN_SAN_JUAN_RAMBLA",
+            "MUN_SAN_MIGUEL_ABONA",
+            "MUN_SAUZAL",
+            "MUN_SILOS",
+            "MUN_TACORONTE",
+            "MUN_TANQUE",
+            "MUN_TEGUESTE",
+            "MUN_VICTORIA_ACENTEJO",
+            "MUN_VILAFLOR_CHASNA",
+        ];
+    }
 }
