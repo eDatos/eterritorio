@@ -1,1 +1,8 @@
-<p-autoComplete></p-autoComplete>
+<p-autoComplete
+    [ngModel]="territoryId"
+    [suggestions]="suggestions"
+    [dropdown]="true"
+    field="name"
+    (completeMethod)="complete($event)"
+    (onSelect)="goTo($event)"
+></p-autoComplete>
