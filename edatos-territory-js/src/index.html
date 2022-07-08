@@ -8,6 +8,14 @@
         <link rel="icon" type="image/x-icon" href="favicon.ico" />
     </head>
     <body>
-        <app-root></app-root>
+        <app-root>
+            <div class="center">
+                <div id="loader"></div>
+            </div>
+            <div id="error">
+                La aplicación no pudo ser iniciada por el siguiente error:
+                <pre id="stacktrace"></pre>
+            </div>
+        </app-root>
     </body>
 </html>
