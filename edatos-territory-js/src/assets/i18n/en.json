@@ -28,6 +28,12 @@
         },
         "page": {
             "title": "Datasets - {{territory}}"
+        },
+        "type": {
+            "CCAA": "Autonomous Region",
+            "ISLA": "Island",
+            "MUN": "Municipality",
+            "PROV": "Province"
         }
     }
 }

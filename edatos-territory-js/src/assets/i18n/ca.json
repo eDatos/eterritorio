@@ -28,6 +28,12 @@
         },
         "page": {
             "title": "Datasets - {{territory}}"
+        },
+        "type": {
+            "CCAA": "Comunitat Autònoma",
+            "ISLA": "Illa",
+            "MUN": "Municipi",
+            "PROV": "Província"
         }
     }
 }

@@ -4,10 +4,11 @@ import { Router, RoutesRecognized } from "@angular/router";
 import { TranslateService } from "@ngx-translate/core";
 import { filter, map, startWith } from "rxjs";
 
-import { PropertiesService } from "@app/core/service";
+import { Territories } from "@app/core/config";
+import { ConfigService } from "@app/core/service";
 import { removeDiacritics } from "@app/core/service/util";
 
-type TerritoryInfo = { id: string; name: string };
+type TerritoryInfo = { id: string; name: string; type: string; fullName: string };
 
 @Component({
     selector: "app-territory-autocomplete",
@@ -21,7 +22,7 @@ export class TerritoryAutocompleteComponent implements OnInit {
     suggestions: TerritoryInfo[] = [];
 
     constructor(
-        private propertiesService: PropertiesService,
+        private configService: ConfigService,
         private translateService: TranslateService,
         private router: Router
     ) {}
@@ -41,16 +42,13 @@ export class TerritoryAutocompleteComponent implements OnInit {
             .subscribe((url) => {
                 const urlSegments = url.split("/");
                 if (urlSegments[1] === "territory" && urlSegments[2]) {
-                    this.territoryId = {
-                        id: urlSegments[2],
-                        name: this.translateService.instant("nodes." + urlSegments[2]),
-                    };
+                    this.territoryId = this.convertToTerritoryInfo(urlSegments[2]);
                 }
             });
 
-        this.territories = this.propertiesService
-            .getTerritoriesList()
-            .map((id) => ({ id, name: this.translateService.instant("nodes." + id) }));
+        this.configService.getTerritories().subscribe((territories) => {
+            this.territories = this.convertToList(territories);
+        });
     }
 
     complete(event: { originalEvent: InputEvent; query: string }) {
@@ -62,5 +60,30 @@ export class TerritoryAutocompleteComponent implements OnInit {
 
     goTo(territory: TerritoryInfo) {
         this.router.navigate(["territory", territory.id]);
+    }
+
+    private convertToList(territories: Territories): TerritoryInfo[] {
+        return territories.groups.flatMap((group) => {
+            return group.children.flatMap((child) => {
+                if (child.codes) {
+                    return child.codes.map((code) => {
+                        return this.convertToTerritoryInfo(code);
+                    });
+                } else {
+                    return this.convertToTerritoryInfo(child.id);
+                }
+            });
+        });
+    }
+
+    private convertToTerritoryInfo(id: string): TerritoryInfo {
+        const name = this.translateService.instant("nodes." + id);
+        const type = id.split("_")[0];
+        return {
+            id,
+            name,
+            type,
+            fullName: `${name} (${this.translateService.instant("territory.type." + type)})`,
+        };
     }
 }

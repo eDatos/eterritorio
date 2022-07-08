@@ -28,6 +28,12 @@
         },
         "page": {
             "title": "Datasets - {{territory}}"
+        },
+        "type": {
+            "CCAA": "Comunidad Autónoma",
+            "ISLA": "Isla",
+            "MUN": "Municipio",
+            "PROV": "Provincia"
         }
     }
 }
