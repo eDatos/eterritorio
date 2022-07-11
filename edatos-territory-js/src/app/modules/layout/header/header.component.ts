@@ -35,9 +35,6 @@ export class HeaderComponent implements OnInit {
         });
     }
 
-    /**
-     * Allows to append a component to the navbar.
-     */
     private initializeNavbarComponents() {
         const componentRef = this.viewContainerRef.createComponent(TerritoryAutocompleteComponent);
         this.renderer.appendChild(
