@@ -17,6 +17,11 @@
                         (click)="caret.classList.toggle('active')"
                         (mousedown)="$event.detail > 1 ? $event.preventDefault() : true"
                     >
+                        <span
+                            class="icon fa-solid"
+                            [class.fa-plus]="!caret.classList.contains('active')"
+                            [class.fa-minus]="caret.classList.contains('active')"
+                        ></span>
                         {{ "nodes." + child.id | translate }}
                     </span>
                     <ul>

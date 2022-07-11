@@ -1,4 +1,6 @@
-@import "src/styles/vendor";
+@import "styles/vendor";
+@import "styles/title-bar"; // ARTE Title Bar
+@import "styles/index"; // App index.html file styling
 
 body {
     font-family: var(--font-family), serif;

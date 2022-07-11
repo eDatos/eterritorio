@@ -20,10 +20,7 @@ ul {
 .caret {
     cursor: pointer;
 
-    &::before {
-        font-family: "Font Awesome 6 Free", serif;
-        content: "\2b"; // "+"
-        font-weight: 600;
+    .icon {
         font-size: 0.8rem;
         color: black;
         display: inline-block;
@@ -34,10 +31,6 @@ ul {
         & + ul {
             display: block;
             margin: 1em 0 1em 2em;
-        }
-
-        &::before {
-            content: "\f068"; // "-"
         }
     }
 
