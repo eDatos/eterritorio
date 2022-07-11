@@ -1,4 +1,4 @@
-#error {
+.load-error {
     display: none;
 }
 
@@ -9,7 +9,7 @@
     transform: translate(-50%, -50%);
 }
 
-#loader {
+.initial-loader {
     border: 16px solid #f3f3f3;
     border-top: 16px solid #3498db;
     border-radius: 50%;
