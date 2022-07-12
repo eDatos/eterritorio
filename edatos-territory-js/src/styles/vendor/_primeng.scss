@@ -1,0 +1,334 @@
+@import "~primeng/resources/primeng.css";
+@import "~primeng/resources/themes/bootstrap4-light-blue/theme.css";
+@import "~primeicons/primeicons.css";
+@import "../variables";
+
+:root {
+    --font-family: $font-family-sans-serif;
+}
+
+$close-icon-width: 2em;
+$autocomplete-vertical-padding: 0.3rem;
+.p-autocomplete {
+    width: 100%;
+    .p-autocomplete-input,
+    .p-autocomplete-multiple-container {
+        font-family: $font-family-sans-serif;
+        width: 100%;
+        padding-right: $primeng-dropdown-button-width;
+
+        .p-autocomplete-token {
+            padding-right: $close-icon-width;
+        }
+        &.p-inputtext {
+            padding-top: $input-padding-y;
+            padding-left: $input-padding-x;
+            padding-right: $input-padding-x;
+            line-height: $input-line-height;
+        }
+    }
+    .p-autocomplete-input {
+        &.p-inputtext {
+            padding-bottom: $input-padding-y;
+        }
+    }
+    .p-autocomplete-multiple-container {
+        &.p-inputtext {
+            padding-bottom: $input-padding-y - $autocomplete-vertical-padding;
+        }
+    }
+    .p-autocomplete-input-token {
+        padding: 0;
+        margin-bottom: $autocomplete-vertical-padding;
+    }
+    .p-autocomplete-dropdown {
+        position: absolute;
+        right: 0;
+    }
+}
+
+.p-element {
+    font-family: $font-family-sans-serif;
+}
+
+.p-listbox {
+    width: 100%;
+}
+
+.p-widget.form-control {
+    padding: 0;
+    border: none;
+}
+
+.p-button-text-only .p-button-text {
+    padding: $input-padding-y $input-padding-x;
+}
+
+fieldset {
+    .p-state-default {
+        border: none;
+        &:hover {
+            border-width: 0 0 2 * $border-width 0;
+            border-style: solid;
+            border-color: $grey-medium !important;
+            margin-bottom: -2 * $border-width;
+        }
+    }
+    p-listbox {
+        padding: $input-padding-y $input-padding-x;
+        .p-chkbox-box {
+            background: none;
+            border: $border-width solid $grey-medium;
+
+            &:hover {
+                border: $border-width solid $grey-medium;
+                margin-bottom: 0;
+            }
+        }
+        .p-widget-header {
+            .p-chkbox-box {
+                color: $grey-darkest;
+            }
+        }
+
+        .disabled-mode.p-listbox {
+            cursor: initial;
+            pointer-events: none;
+            .p-listbox-header .p-chkbox {
+                opacity: 0;
+            }
+        }
+
+        input.p-inputtext {
+            pointer-events: initial;
+        }
+    }
+}
+
+.p-state-disabled:hover {
+    border-bottom: none !important;
+    margin-bottom: initial !important;
+}
+
+fieldset:disabled,
+fieldset[disabled] {
+    .entity-fields .form-group {
+        .p-state-default {
+            pointer-events: none;
+            cursor: initial;
+            &:hover {
+                border-bottom: none;
+                margin-bottom: initial;
+            }
+        }
+    }
+}
+
+.p-chkbox-box {
+    &.p-state-default {
+        background: $white;
+    }
+    &.p-state-active {
+        background: $main-medium;
+    }
+}
+
+.p-inputtext.p-state-focus,
+.p-inputtext:focus {
+    -moz-box-shadow: none;
+    -webkit-box-shadow: none;
+    box-shadow: none;
+}
+
+p-dataTable {
+    .p-datatable .p-sortable-column:not(.p-state-active):hover {
+        background: $white;
+        color: $grey-darkest;
+    }
+    .p-datatable .p-datatable-data > tr > td,
+    .p-datatable .p-datatable-thead > tr > th {
+        padding: $table-cell-padding;
+
+        border-left: none;
+        border-right: none;
+        border-top: none;
+
+        text-align: left;
+
+        font-weight: $font-weight-light;
+    }
+    .p-datatable .p-datatable-data > tr.p-rowgroup-header > td {
+        padding-top: 0;
+        padding-bottom: 0;
+    }
+
+    .row-group-item {
+        padding: $table-cell-padding 0;
+    }
+
+    th,
+    .p-widget-header,
+    .p-widget-content {
+        border-left: none;
+        border-right: none;
+
+        font-weight: $font-weight-normal;
+    }
+
+    .p-datatable .p-datatable-footer {
+        border-bottom: none;
+        padding-left: $page-padding-left;
+        padding-right: $page-padding-right;
+    }
+
+    .p-datatable {
+        // https://stackoverflow.com/questions/25591499/chrome-bug-with-colspan-and-border
+        table {
+            border-collapse: separate;
+            border-spacing: 0;
+        }
+
+        .fa-chevron-circle-right,
+        .fa-chevron-circle-down {
+            width: $dataTable-toggle-width;
+        }
+        .p-rowgroup-header a {
+            position: absolute;
+            padding: $table-cell-padding 0;
+            left: 0;
+        }
+        .p-rowgroup-header-name {
+            width: 100%;
+        }
+    }
+}
+
+fieldset[disabled] {
+    p-listbox {
+        .p-widget-header {
+            display: none;
+        }
+    }
+}
+
+p-tree {
+    .p-tree .p-treenode-content {
+        &.p-treenode-selectable .p-treenode-label {
+            font-weight: $font-weight-bold;
+        }
+        .p-treenode-label {
+            .fa {
+                margin-left: $spacer-x / 4;
+            }
+        }
+    }
+}
+
+$orderlist-control-width: 2rem;
+$orderlist-control-padding-x: 0.25rem;
+
+.orderlist-header {
+    margin-right: $orderlist-control-width + $orderlist-control-padding-x * 2;
+    border: $border-width solid transparent;
+
+    .orderlist-row {
+        color: $grey-dark;
+        background: $grey-lightest;
+    }
+}
+
+.orderlist-row {
+    display: flex;
+    flex-wrap: wrap;
+    font-style: normal;
+
+    .orderlist-cell {
+        padding: $spacer-y/2 $spacer-x/2;
+    }
+}
+
+%disable-order-list {
+    .p-orderlist-controls {
+        visibility: hidden;
+        height: 0;
+    }
+    .p-orderlist {
+        .p-orderlist-list-container {
+            .p-orderlist-list {
+                border: $border-width solid transparent;
+                .p-orderlist-item {
+                    border-top: $border-width solid $grey-light;
+                    &:not(.p-state-highlight):hover {
+                        background: $grey-lightest;
+                        color: $black;
+                    }
+                }
+            }
+        }
+    }
+    .p-orderlist-droppoint {
+        display: none;
+    }
+}
+
+fieldset[disabled] {
+    p-orderList {
+        @extend %disable-order-list;
+    }
+}
+
+p-orderList {
+    &.disabled {
+        @extend %disable-order-list;
+    }
+    .p-orderlist {
+        width: 100%;
+        display: flex;
+
+        .p-orderlist-controls {
+            order: 1;
+
+            display: flex;
+            flex-direction: column;
+
+            button[icon="fa-angle-double-up"] {
+                order: 1;
+            }
+            button[icon="fa-angle-up"] {
+                order: 2;
+            }
+            button[icon="fa-angle-down"] {
+                order: 3;
+            }
+            button[icon="fa-angle-double-down"] {
+                order: 4;
+            }
+
+            padding: 0 $orderlist-control-padding-x;
+            .p-button-icon-only {
+                width: $orderlist-control-width;
+            }
+        }
+
+        .p-orderlist-list-container {
+            flex: 1;
+            max-width: 100%;
+
+            .p-orderlist-list {
+                border: $border-width solid $grey-medium;
+                border-radius: $border-radius;
+
+                .p-orderlist-item {
+                    padding: 0;
+                    margin-left: 0;
+                    margin-right: 0;
+                }
+
+                display: block;
+
+                width: 100%;
+                height: 100%;
+            }
+        }
+    }
+}
