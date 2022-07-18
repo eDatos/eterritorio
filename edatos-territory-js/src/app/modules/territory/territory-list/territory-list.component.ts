@@ -4,11 +4,11 @@ import { Group, Territories } from "@app/core/config";
 import { ConfigService } from "@app/core/service";
 
 @Component({
-    selector: "app-territories-list",
-    templateUrl: "./territories-list.component.html",
-    styleUrls: ["./territories-list.component.scss"],
+    selector: "app-territory-detail",
+    templateUrl: "./territory-list.component.html",
+    styleUrls: ["./territory-list.component.scss"],
 })
-export class TerritoriesListComponent implements OnInit {
+export class TerritoryListComponent implements OnInit {
     groups: Group[] = [];
 
     constructor(private configService: ConfigService) {}

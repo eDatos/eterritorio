@@ -10,10 +10,10 @@ import { DatasetService, PropertiesService } from "@app/core/service";
 
 @Component({
     selector: "app-territory-info",
-    templateUrl: "./territory-info.component.html",
-    styleUrls: ["./territory-info.component.scss"],
+    templateUrl: "./territory-detail.component.html",
+    styleUrls: ["./territory-detail.component.scss"],
 })
-export class TerritoryInfoComponent implements OnInit {
+export class TerritoryDetailComponent implements OnInit {
     datasets?: Dataset[];
     loading = false;
     territoryId?: string;
