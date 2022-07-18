@@ -218,7 +218,7 @@ p-tree {
         }
         .p-treenode-label {
             .fa {
-                margin-left: $spacer-x / 4;
+                margin-left: $spacer-x * 0.25;
             }
         }
     }
@@ -243,7 +243,7 @@ $orderlist-control-padding-x: 0.25rem;
     font-style: normal;
 
     .orderlist-cell {
-        padding: $spacer-y/2 $spacer-x/2;
+        padding: $spacer-y * 0.5 $spacer-x * 0.5;
     }
 }
 
