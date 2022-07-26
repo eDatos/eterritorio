@@ -1,6 +1,9 @@
 {
     "app": {
-        "name": "eTerritorios"
+        "name": "eTerritorios",
+        "page": {
+            "title": "Cercador de datasets per territori"
+        }
     },
     "error": {
         "404": {
@@ -8,17 +11,29 @@
             "title": "Error 404"
         }
     },
-    "search": {
+    "navbar": {
         "autocomplete": {
-            "placeholder": "Busqueu aquí: Canarias, La Orotava, Agaete, Las Palmas..."
-        },
-        "operations-tree": {
-            "empty": "No hi ha datasets adscrits a aquesta operació estadística",
-            "title": "Datasets per operació estadística"
-        },
-        "title": "Buscar datasets per territoris"
+            "placeholder": "Buscar territoris"
+        }
     },
     "territories": {
-        "title": "Datasets - {{territory}}"
+        "header": {
+            "title": "Buscar datasets per territoris"
+        }
+    },
+    "territory": {
+        "operations-tree": {
+            "empty": "No hi ha datasets que continguin informació sobre aquest territori",
+            "title": "Datasets per operació estadística"
+        },
+        "page": {
+            "title": "Datasets - {{territory}}"
+        },
+        "type": {
+            "CCAA": "Comunitat Autònoma",
+            "ISLA": "Illa",
+            "MUN": "Municipi",
+            "PROV": "Província"
+        }
     }
 }

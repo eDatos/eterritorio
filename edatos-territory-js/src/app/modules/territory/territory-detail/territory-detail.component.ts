@@ -9,14 +9,14 @@ import { Dataset } from "@app/core/model";
 import { DatasetService, PropertiesService } from "@app/core/service";
 
 @Component({
-    selector: "app-territory",
-    templateUrl: "./territory.component.html",
-    styleUrls: ["./territory.component.scss"],
+    selector: "app-territory-info",
+    templateUrl: "./territory-detail.component.html",
+    styleUrls: ["./territory-detail.component.scss"],
 })
-export class TerritoryComponent implements OnInit {
+export class TerritoryDetailComponent implements OnInit {
     datasets?: Dataset[];
     loading = false;
-    variableElementId?: string;
+    territoryId?: string;
 
     constructor(
         private route: ActivatedRoute,
@@ -28,21 +28,21 @@ export class TerritoryComponent implements OnInit {
 
     ngOnInit(): void {
         this.route.params.subscribe((params) => {
-            const variableElementId = params["variableElementId"];
-            const territoryName = this.translateService.instant(`territories.${variableElementId}`);
-            const title = this.translateService.instant("territories.title", { territory: territoryName });
+            const territoryId = params["territoryId"];
+            const territoryName = this.translateService.instant(`nodes.${territoryId}`);
+            const title = this.translateService.instant("territory.page.title", { territory: territoryName });
             this.title.setTitle(title);
-            this.init(variableElementId);
+            this.init(territoryId);
         });
     }
 
-    init(variableElementId: string) {
+    init(territoryId: string) {
         this.loading = true;
-        this.variableElementId = variableElementId;
+        this.territoryId = territoryId;
 
         const agencyId = this.propertiesService.getOrganization();
 
-        this.datasetService.getDatasetsByTerritoryVariableElementId(this.variableElementId).subscribe((datasets) => {
+        this.datasetService.getDatasetsByTerritoryVariableElementId(this.territoryId).subscribe((datasets) => {
             const observables$ = [];
 
             for (const dataset of datasets.dataset) {

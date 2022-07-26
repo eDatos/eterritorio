@@ -1,0 +1,9 @@
+<p-autoComplete
+    [ngModel]="territoryId"
+    [suggestions]="suggestions"
+    [dropdown]="true"
+    [placeholder]="'navbar.autocomplete.placeholder' | translate"
+    field="fullName"
+    (completeMethod)="complete($event)"
+    (onSelect)="goTo($event)"
+></p-autoComplete>

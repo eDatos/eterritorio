@@ -1,11 +1,23 @@
-@import "src/styles/vendor";
+@import "styles/vendor";
+@import "styles/title-bar";
+@import "styles/loader";
+@import "styles/variables";
 
-body {
-    font-family: Inter, serif;
+// ******************************************************
+// ******************* Project styles *******************
+// ******************************************************
+
+body,
+h1,
+h2,
+h3,
+h4 {
+    font-family: $font-family-sans-serif; // default apply theme font to non-primeng components
+    font-weight: 300;
 }
 
-// see https://css-irl.info/animating-underlines/
 .underline-link {
+    // see https://css-irl.info/animating-underlines/
     color: var(--text-color);
     text-decoration: none;
     background: linear-gradient(to right, white, white), linear-gradient(to right, var(--text-color), var(--text-color));
