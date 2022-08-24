@@ -20,7 +20,7 @@ export class DatasetService {
 
     constructor(private http: HttpClient, private propertiesService: PropertiesService) {
         DatasetService.REST_URL =
-            this.propertiesService.getStatisticalResourcesExternalApiUrl() + "/apis/statistical-resources/v1.0";
+            this.propertiesService.getStatisticalResourcesExternalApiUrl() + "/v1.0";
     }
 
     getAllDatasets(): Observable<DatasetsDto> {
