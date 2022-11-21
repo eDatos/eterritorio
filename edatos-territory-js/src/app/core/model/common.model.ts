@@ -59,3 +59,17 @@ export class LocalisedString {
         this.value = value;
     }
 }
+
+export class ItemBase {
+
+    public id!: string;
+    public urn!: string;
+    public type!: string;
+
+    @Type(() => InternationalString)
+    public name!: InternationalString;
+
+    getName(lang: string): string | null {
+        return this.name.get(lang);
+    }
+}

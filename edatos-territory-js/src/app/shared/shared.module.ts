@@ -11,7 +11,6 @@ import { TreeModule } from "primeng/tree";
 
 import { TranslateModule } from "@ngx-translate/core";
 
-import { DatasetCardComponent } from "@app/shared/components/dataset-card";
 import { OperationsListComponent } from "@app/shared/components/operations-list";
 import { TerritoryAutocompleteComponent } from "@app/shared/components/territory-autocomplete";
 import { SafeHtmlPipe } from "@app/shared/pipe";
@@ -21,14 +20,12 @@ import { StripHtmlPipe } from "./pipe/strip-html.pipe";
 @NgModule({
     declarations: [
         SafeHtmlPipe,
-        DatasetCardComponent,
         StripHtmlPipe,
         OperationsListComponent,
         TerritoryAutocompleteComponent,
     ],
     exports: [
         SafeHtmlPipe,
-        DatasetCardComponent,
         OperationsListComponent,
         RouterModule,
         TerritoryAutocompleteComponent,

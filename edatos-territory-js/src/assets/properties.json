@@ -1,7 +1,7 @@
 {
     "endpoints": {
         "cmetadata": {
-            "url": "https://estadisticas.arte-consultores.com/cmetadata/v1.0"
+            "url": "http://localhost:8080/common-metadata-3.0.1-SNAPSHOT/apis/cmetadata/v1.0"
         }
     },
     "keys": {

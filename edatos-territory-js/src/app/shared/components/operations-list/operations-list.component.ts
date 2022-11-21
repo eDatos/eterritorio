@@ -5,8 +5,8 @@ import { TreeNode } from "primeng/api";
 import { TranslateService } from "@ngx-translate/core";
 import { finalize } from "rxjs";
 
-import { Dataset, DatasetBase } from "@app/core/model";
-import { OperationService, VisualizerService } from "@app/core/service";
+import { Resource, ItemBase, StatisticalOperation} from "@app/core/model";
+import { OperationService } from "@app/core/service";
 
 @Component({
     selector: "app-operations-list",
@@ -18,39 +18,39 @@ export class OperationsListComponent implements OnInit {
      * Variable element ID of the territory.
      */
     @Input()
-    datasets?: Dataset[];
+    datasets?: Resource[];
     tree: TreeNode[] = [];
     loading = false;
 
     constructor(
-        private operationService: OperationService,
-        private translateService: TranslateService,
-        private visualizerService: VisualizerService
+        private translateService: TranslateService
     ) {}
 
+    private getAllOperationsFromDatasets() {
+        const operations: StatisticalOperation[] = [];
+        if (this.datasets) {
+          this.datasets.forEach(dataset => {
+            if (!operations.find((op) => op.urn === dataset.statisticalOperation.urn)) {
+                operations.push(new StatisticalOperation(dataset.statisticalOperation.id, dataset.statisticalOperation.urn, dataset.statisticalOperation.name));
+            }
+          });
+        }
+        return operations;
+    }
+
     ngOnInit(): void {
-        this.loading = true;
-        this.operationService
-            .getAllOperations()
-            .pipe(finalize(() => (this.loading = false)))
-            .subscribe((operations) => {
-                const operationsToShow = operations.operation.filter((operation) => {
-                    return this.datasets?.some(
-                        (dataset) => dataset.metadata?.statisticalOperation.urn === operation.urn
-                    );
-                });
-                this.tree = this.toTreeNodeList(operationsToShow);
-            });
+        this.tree = this.toTreeNodeList(this.getAllOperationsFromDatasets());
     }
 
     getVisualizerUrl(datasetId: string): string {
-        return this.visualizerService.generateVisualizerUrl(datasetId);
+        const dataset = this.datasets?.find((dataset) => dataset.resourceID?.id === datasetId);
+        return dataset ? dataset.visualizerHtmlLink : '';
     }
 
     private toTreeNodeList(siemacResource: { urn: string; getName: Function }[]): TreeNode[] {
         const children = [];
         for (const elem of siemacResource) {
-            const isDataset = elem instanceof DatasetBase;
+            const isDataset = elem instanceof ItemBase;
             const node: TreeNode = {
                 key: elem.urn,
                 label: elem.getName(this.translateService.currentLang),
@@ -61,10 +61,15 @@ export class OperationsListComponent implements OnInit {
             children.push(node);
             if (!isDataset) {
                 node.children = this.toTreeNodeList(
-                    this.datasets?.filter((dataset) => dataset.metadata?.statisticalOperation.urn === elem.urn) || []
+                    this.getDatasetsByStatisticalOperation(elem.urn)
                 );
             }
         }
         return children;
+    }
+
+    private getDatasetsByStatisticalOperation(statisticalOperation: string): ItemBase[]  {
+        const filteredDatasets: Resource[] = this.datasets?.filter((dataset) => dataset.statisticalOperation?.urn === statisticalOperation) || [];
+        return filteredDatasets?.map(item =>{return item.resourceID}) || [];
     }
 }
