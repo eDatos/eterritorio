@@ -24,7 +24,7 @@ export class DatasetService {
     }
 
     getDatasetsByTerritoryVariableElementId(variableElementId: string): Observable<Resources> {
-        const url = `${DatasetService.REST_URL}/resources.json?query=GEOCOV_VARELEM_ID eq '${variableElementId}'`;
+        const url = `${DatasetService.REST_URL}/resources.json?query=GEOCOV_VARELEM_ID eq '${variableElementId}'&limit=1000`;
         return this.http.get(url /**/).pipe(instantiate(Resources));
     }
 }
