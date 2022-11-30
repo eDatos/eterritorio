@@ -17,6 +17,7 @@ export interface DatasetQuery {
 })
 export class DatasetService {
     public static REST_URL: string;
+    private static LIMIT: string = "100000";
 
     constructor(private http: HttpClient, private propertiesService: PropertiesService) {
         DatasetService.REST_URL =
@@ -24,7 +25,7 @@ export class DatasetService {
     }
 
     getDatasetsByTerritoryVariableElementId(variableElementId: string): Observable<Resources> {
-        const url = `${DatasetService.REST_URL}/resources.json?query=GEOCOV_VARELEM_ID eq '${variableElementId}' AND IS_LAST_VERSION EQ 'true'&limit=1000`;
+        const url = `${DatasetService.REST_URL}/resources.json?query=GEOCOV_VARELEM_ID eq '${variableElementId}' AND IS_LAST_VERSION EQ 'true'&limit=${DatasetService.LIMIT}`;
         return this.http.get(url /**/).pipe(instantiate(Resources));
     }
 }
