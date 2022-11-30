@@ -14,7 +14,7 @@ export class Resource {
     }
 
     @Type(() => ItemBase)
-    public resourceID!: ItemBase;
+    public resourceId!: ItemBase;
 
     public visualizerHtmlLink!: string;
     

@@ -38,13 +38,7 @@ export class TerritoryDetailComponent implements OnInit {
 
     init(territoryId: string) {
         this.loading = true;
-        this.territoryId = territoryId;
-
-        const agencyId = this.propertiesService.getOrganization();
-
-        this.datasetService.getDatasetsByTerritoryVariableElementId(this.territoryId)
-        .pipe(finalize(() => (this.loading = false)))
-        
+        this.territoryId = territoryId;       
 
         this.datasetService.getDatasetsByTerritoryVariableElementId(this.territoryId)
         .pipe(finalize(() => (this.loading = false)))
