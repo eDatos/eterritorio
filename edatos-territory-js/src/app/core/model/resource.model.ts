@@ -1,9 +1,10 @@
 import { Type } from "class-transformer";
 
-import { InternationalString, Kind, SelfLink, ItemBase } from "@app/core/model";
+import { InternationalString, Kind, SelfLink, StatisticalOperation } from "@app/core/model";
 
 export class Resource {
 
+    public id!: string;
     public urn!: string;
 
     @Type(() => InternationalString)
@@ -12,17 +13,14 @@ export class Resource {
     getName(lang: string): string | null {
         return this.name.get(lang);
     }
-
-    @Type(() => ItemBase)
-    public resourceId!: ItemBase;
+    
+    @Type(() => StatisticalOperation)
+    public statisticalOperation!: StatisticalOperation;
 
     public visualizerHtmlLink!: string;
     
     @Type(() => SelfLink)
     public selfLink!: SelfLink;
-
-    @Type(() => ItemBase)
-    public statisticalOperation!: ItemBase;
 
     public kind = Kind.DATASET;
 }

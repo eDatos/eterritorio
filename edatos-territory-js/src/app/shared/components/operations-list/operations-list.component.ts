@@ -4,7 +4,7 @@ import { TreeNode } from "primeng/api";
 
 import { TranslateService } from "@ngx-translate/core";
 
-import { Resource, ItemBase, StatisticalOperation} from "@app/core/model";
+import { Resource, StatisticalOperation} from "@app/core/model";
 
 @Component({
     selector: "app-operations-list",
@@ -41,14 +41,14 @@ export class OperationsListComponent implements OnInit {
     }
 
     getVisualizerUrl(datasetId: string): string {
-        let dataset = this.datasets!.find((dataset) => dataset.resourceId.id === datasetId);
+        let dataset = this.datasets!.find((dataset) => dataset.id === datasetId);
         return dataset!.visualizerHtmlLink;
     }
 
     private toTreeNodeList(siemacResource: { urn: string; getName: Function }[]): TreeNode[] {
         const children = [];
         for (const elem of siemacResource) {
-            const isDataset = elem instanceof ItemBase;
+            const isDataset = elem instanceof Resource;
             const node: TreeNode = {
                 key: elem.urn,
                 label: elem.getName(this.translateService.currentLang),
@@ -66,8 +66,8 @@ export class OperationsListComponent implements OnInit {
         return children;
     }
 
-    private getDatasetsByStatisticalOperation(statisticalOperationUrn: string): ItemBase[]  {
+    private getDatasetsByStatisticalOperation(statisticalOperationUrn: string): StatisticalOperation[]  {
         const filteredDatasets: Resource[] = this.datasets?.filter((dataset) => dataset.statisticalOperation?.urn === statisticalOperationUrn) || [];
-        return filteredDatasets?.map(item =>{return item.resourceId}) || [];
+        return filteredDatasets?.map(item =>{return item}) || [];
     }
 }
