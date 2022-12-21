@@ -2,39 +2,33 @@ import { Type } from "class-transformer";
 
 import { InternationalString, Kind, SelfLink, StatisticalOperation } from "@app/core/model";
 
-export class DatasetBase {
+export class Resource {
+
     public id!: string;
     public urn!: string;
-
-    @Type(() => SelfLink)
-    public selfLink!: SelfLink;
 
     @Type(() => InternationalString)
     public name!: InternationalString;
 
-    public kind = Kind.DATASET;
-
     getName(lang: string): string | null {
         return this.name.get(lang);
     }
-}
-
-class DatasetMetadata {
+    
     @Type(() => StatisticalOperation)
-    statisticalOperation!: StatisticalOperation;
+    public statisticalOperation!: StatisticalOperation;
+
+    public visualizerHtmlLink!: string;
+    
+    @Type(() => SelfLink)
+    public selfLink!: SelfLink;
+
+    public kind = Kind.DATASET;
 }
 
-export class Dataset extends DatasetBase {
-    @Type(() => InternationalString)
-    public description!: InternationalString;
 
-    @Type(() => DatasetMetadata)
-    public metadata?: DatasetMetadata;
-}
-
-export class DatasetsDto {
-    @Type(() => DatasetBase)
-    public dataset!: DatasetBase[];
+export class Resources {
+    @Type(() => Resource)
+    public resource!: Resource[];
 
     public kind!: Kind;
 

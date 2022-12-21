@@ -3,9 +3,9 @@ import { Title } from "@angular/platform-browser";
 import { ActivatedRoute } from "@angular/router";
 
 import { TranslateService } from "@ngx-translate/core";
-import { finalize, forkJoin } from "rxjs";
+import { finalize } from "rxjs";
 
-import { Dataset } from "@app/core/model";
+import { Resource } from "@app/core/model";
 import { DatasetService, PropertiesService } from "@app/core/service";
 
 @Component({
@@ -14,7 +14,7 @@ import { DatasetService, PropertiesService } from "@app/core/service";
     styleUrls: ["./territory-detail.component.scss"],
 })
 export class TerritoryDetailComponent implements OnInit {
-    datasets?: Dataset[];
+    resources?: Resource[];
     loading = false;
     territoryId?: string;
 
@@ -38,24 +38,12 @@ export class TerritoryDetailComponent implements OnInit {
 
     init(territoryId: string) {
         this.loading = true;
-        this.territoryId = territoryId;
+        this.territoryId = territoryId;       
 
-        const agencyId = this.propertiesService.getOrganization();
-
-        this.datasetService.getDatasetsByTerritoryVariableElementId(this.territoryId).subscribe((datasets) => {
-            const observables$ = [];
-
-            for (const dataset of datasets.dataset) {
-                observables$.push(
-                    this.datasetService.getDataset(agencyId, dataset.id, "~latest", ["-data", "-dimension.description"])
-                );
-            }
-
-            forkJoin(observables$)
-                .pipe(finalize(() => (this.loading = false)))
-                .subscribe((datasets: Dataset[]) => {
-                    this.datasets = datasets;
-                });
+        this.datasetService.getDatasetsByTerritoryVariableElementId(this.territoryId)
+        .pipe(finalize(() => (this.loading = false)))
+        .subscribe((resources) => {
+            this.resources = resources.resource;
         });
     }
 }
