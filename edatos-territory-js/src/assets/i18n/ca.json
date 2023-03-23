@@ -33,7 +33,8 @@
             "CCAA": "Comunitat Autònoma",
             "ISLA": "Illa",
             "MUN": "Municipi",
-            "PROV": "Província"
-        }
+            "PROV": "Província",
+            "COM": "Comarca estadística"
+       }
     }
 }
