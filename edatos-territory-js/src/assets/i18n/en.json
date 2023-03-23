@@ -33,7 +33,8 @@
             "CCAA": "Autonomous Region",
             "ISLA": "Island",
             "MUN": "Municipality",
-            "PROV": "Province"
+            "PROV": "Province",
+            "COM": "Statistical region"
         }
     }
 }
