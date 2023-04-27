@@ -1,12 +1,22 @@
 import { NgModule } from "@angular/core";
 import { RouterModule, Routes } from "@angular/router";
 
-import { SearchTerritoryComponent } from "@app/modules/search/search-territory";
+import { NotFoundComponent } from "@app/modules/error/not-found";
+import { TerritoryDetailComponent, TerritoryListComponent } from "@app/modules/territory";
 
 const ROUTES: Routes = [
     {
         path: "",
-        component: SearchTerritoryComponent,
+        component: TerritoryListComponent,
+    },
+    {
+        path: "territory/:territoryId",
+        component: TerritoryDetailComponent,
+    },
+    {
+        path: "**",
+        pathMatch: "full",
+        component: NotFoundComponent,
     },
 ];
 

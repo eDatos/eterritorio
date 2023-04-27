@@ -1,4 +1,40 @@
 {
-    "languageUsed": "Ilenguatge usat",
-    "test": "Bon dia"
+    "app": {
+        "name": "eTerritorios",
+        "page": {
+            "title": "Cercador de datasets per territori"
+        }
+    },
+    "error": {
+        "404": {
+            "detail": "Pàgina no trobada",
+            "title": "Error 404"
+        }
+    },
+    "navbar": {
+        "autocomplete": {
+            "placeholder": "Buscar territoris"
+        }
+    },
+    "territories": {
+        "header": {
+            "title": "Buscar datasets per territoris"
+        }
+    },
+    "territory": {
+        "operations-tree": {
+            "empty": "No hi ha datasets que continguin informació sobre aquest territori",
+            "title": "Datasets per operació estadística"
+        },
+        "page": {
+            "title": "Datasets - {{territory}}"
+        },
+        "type": {
+            "CCAA": "Comunitat Autònoma",
+            "ISLA": "Illa",
+            "MUN": "Municipi",
+            "PROV": "Província",
+            "COM": "Comarca estadística"
+       }
+    }
 }

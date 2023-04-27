@@ -20,19 +20,14 @@
                 "build": {
                     "builder": "@angular-devkit/build-angular:browser",
                     "options": {
-                        "outputPath": "dist/edatos-territory",
+                        "outputPath": "dist",
                         "index": "src/index.html",
                         "main": "src/main.ts",
                         "polyfills": "src/polyfills.ts",
                         "tsConfig": "tsconfig.app.json",
                         "inlineStyleLanguage": "scss",
                         "assets": ["src/favicon.ico", "src/assets"],
-                        "styles": [
-                            "node_modules/primeicons/primeicons.css",
-                            "node_modules/primeng/resources/primeng.css",
-                            "node_modules/primeng/resources/themes/tailwind-light/theme.css",
-                            "src/styles.scss"
-                        ],
+                        "styles": ["src/styles.scss"],
                         "scripts": []
                     },
                     "configurations": {
@@ -100,7 +95,16 @@
                         "assets": ["src/favicon.ico", "src/assets"],
                         "styles": ["src/styles.scss"],
                         "scripts": []
-                    }
+                    },
+                    "configurations": {
+                        "production": {
+                            "karmaConfig": "karma.conf.prod.js"
+                        },
+                        "development": {
+                            "karmaConfig": "karma.conf.js"
+                        }
+                    },
+                    "defaultConfiguration": "production"
                 },
                 "lint": {
                     "builder": "@angular-eslint/builder:lint",
@@ -111,8 +115,10 @@
             }
         }
     },
-    "defaultProject": "edatos-territory",
     "cli": {
-        "defaultCollection": "@angular-eslint/schematics"
+        "schematicCollections": [
+          "@angular-eslint/schematics"
+        ],
+        "analytics": false
     }
 }

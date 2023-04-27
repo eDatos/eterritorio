@@ -1,18 +1,27 @@
+import { HttpClient } from "@angular/common/http";
 import { Injectable } from "@angular/core";
 
-import { AppProperties } from "@app/core/config";
+import { Observable, shareReplay } from "rxjs";
+
+import { Properties, Territories } from "@app/core/config";
 
 @Injectable({
     providedIn: "root",
 })
 export class ConfigService {
-    constructor() {}
+    static PROPERTIES_FILE_URL = "assets/properties.json";
+    static TERRITORIES_FILE_URL = "assets/territories/territories.json";
 
-    getProperties(): AppProperties {
-        return ConfigService.window.configuration;
+    private properties$ = this.http.get<Properties>(ConfigService.PROPERTIES_FILE_URL).pipe(shareReplay(1));
+    private territories$ = this.http.get<Territories>(ConfigService.TERRITORIES_FILE_URL).pipe(shareReplay(1));
+
+    constructor(private http: HttpClient) {}
+
+    getProperties(): Observable<Properties> {
+        return this.properties$;
     }
 
-    private static get window(): any {
-        return window;
+    getTerritories(): Observable<Territories> {
+        return this.territories$;
     }
 }

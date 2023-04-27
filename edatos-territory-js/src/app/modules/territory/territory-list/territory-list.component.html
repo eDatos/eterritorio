@@ -1,0 +1,38 @@
+<header>
+    <h1>{{ "territories.header.title" | translate }}</h1>
+</header>
+<ul class="groups">
+    <li *ngFor="let group of groups">
+        <h3>{{ "nodes." + group.id | translate }}</h3>
+        <ul>
+            <li *ngFor="let child of group.children">
+                <a *ngIf="child.codes === undefined" class="underline-link" [routerLink]="['territory', child.id]">
+                    {{ "nodes." + child.id | translate }}
+                </a>
+                <ng-container *ngIf="child.codes !== undefined">
+                    <!--Caret prevents doubleclick selection but allows drag selection-->
+                    <span
+                        #caret
+                        class="caret"
+                        (click)="caret.classList.toggle('active')"
+                        (mousedown)="$event.detail > 1 ? $event.preventDefault() : true"
+                    >
+                        <span
+                            class="icon fa-solid"
+                            [class.fa-plus]="!caret.classList.contains('active')"
+                            [class.fa-minus]="caret.classList.contains('active')"
+                        ></span>
+                        {{ "nodes." + child.id | translate }}
+                    </span>
+                    <ul>
+                        <li *ngFor="let code of child.codes">
+                            <a class="underline-link" [routerLink]="['territory', code]">
+                                {{ "nodes." + code | translate }}
+                            </a>
+                        </li>
+                    </ul>
+                </ng-container>
+            </li>
+        </ul>
+    </li>
+</ul>

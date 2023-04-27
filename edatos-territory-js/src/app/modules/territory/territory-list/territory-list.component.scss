@@ -1,0 +1,40 @@
+ul {
+    line-height: 1.5em;
+    padding: 0;
+    list-style: none;
+}
+
+.groups {
+    display: flex;
+    flex-grow: 0;
+    flex-wrap: wrap;
+    column-gap: 4em;
+    row-gap: 2em;
+
+    & > li {
+        min-width: 14em;
+        max-width: 14em;
+    }
+}
+
+.caret {
+    cursor: pointer;
+
+    .icon {
+        font-size: 0.8rem;
+        color: black;
+        display: inline-block;
+        margin-right: 6px;
+    }
+
+    &.active {
+        & + ul {
+            display: block;
+            margin: 1em 0 1em 2em;
+        }
+    }
+
+    & + ul {
+        display: none;
+    }
+}

@@ -1,0 +1,10 @@
+spring:
+  application:
+    name: edatos-territory
+  profiles:
+    active: @spring.profiles.active@
+  mvc:
+    pathmatch:
+      matching-strategy: ant_path_matcher
+  thymeleaf:
+    prefix: classpath:/static/

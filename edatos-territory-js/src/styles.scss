@@ -1,1 +1,33 @@
-@import "src/styles/primeng";
+@import "styles/vendor";
+@import "styles/title-bar";
+@import "styles/loader";
+@import "styles/variables";
+
+// ******************************************************
+// ******************* Project styles *******************
+// ******************************************************
+
+body,
+h1,
+h2,
+h3,
+h4 {
+    font-family: $font-family-sans-serif; // default apply theme font to non-primeng components
+    font-weight: 300;
+}
+
+.underline-link {
+    // see https://css-irl.info/animating-underlines/
+    color: var(--text-color);
+    text-decoration: none;
+    background: linear-gradient(to right, white, white), linear-gradient(to right, var(--text-color), var(--text-color));
+    background-size: 100% 0.1em, 0 0.1em;
+    background-position: 100% 100%, 0 100%;
+    background-repeat: no-repeat;
+    transition: background-size 400ms;
+
+    &:hover,
+    &:focus {
+        background-size: 0 0.1em, 100% 0.1em;
+    }
+}

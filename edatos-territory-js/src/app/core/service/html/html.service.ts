@@ -1,37 +1,55 @@
 import { HttpClient } from "@angular/common/http";
 import { Injectable } from "@angular/core";
+import { Params } from "@angular/router";
 
-import { Observable } from "rxjs";
+import { EMPTY, Observable } from "rxjs";
 
-import { ConfigService } from "@app/core/service";
-
-export interface EDatosPropertiesResponse {
-    property: { key: string; value: string }[];
-    total: number;
-}
+import { PropertiesService } from "@app/core/service";
 
 @Injectable({
     providedIn: "root",
 })
 export class HtmlService {
-    constructor(private http: HttpClient, private configService: ConfigService) {}
+    constructor(private http: HttpClient, private propertiesService: PropertiesService) {}
 
-    getConfigValue(value: string): Observable<EDatosPropertiesResponse> {
-        return this.http.get(value) as Observable<EDatosPropertiesResponse>;
+    getHeaderHtml(appName?: string): Observable<string> {
+        return this.getComponentByUrl(this.propertiesService.getLayoutHeaderUrl(), { appName });
     }
 
-    getHeaderHtml(): Observable<string> {
-        // const key = this.configService.getProperties().layout.headerUrlKey;
-        // return this.getConfigValue(
-        //     `https://estadisticas.arte-consultores.com/cmetadata/v1.0/properties?query=KEY EQ "${key}"`
-        // ).pipe(mergeMap((headerHtmlUrl) => this.http.get(headerHtmlUrl.property[0].value, { responseType: "text"
-        // })));
-        return this.http.get(
-            "https://estadisticas.arte-consultores.com/apps/organisations/istac/common/header/header.html",
-            {
+    getFooterHtml(): Observable<string> {
+        return this.getComponentByUrl(this.propertiesService.getLayoutFooterUrl());
+    }
+
+    private getComponentByUrl(url: string, queryParams?: Params): Observable<string> {
+        // Url checking was implemented because in some instances you would get from common-metadata
+        // a value like, i.e., "FILL_ME" for the url footer, instead of a valid url (in dev environments).
+        // And that would cause an infinite loop: a request to app.domain.com/FILL_ME is made (instead of
+        // a request to another.domain.com/footer-url), DefaultController responds with index.html, app
+        // restarts and loads footer, start again.
+        if (HtmlService.validUrl(url)) {
+            return this.http.get(url, {
                 headers: { "Content-Type": "text/plain" },
                 responseType: "text",
+                params: queryParams,
+            });
+        } else {
+            console.error(`Invalid url: ${url}`);
+            return EMPTY;
+        }
+    }
+
+    private static validUrl(url: string): boolean {
+        let valid = true;
+        try {
+            if (url) {
+                let validUrl = new URL(url);
+                if (validUrl.host == "" && validUrl.origin == "null") {
+                    valid = false;
+                }
             }
-        );
+        } catch {
+            valid = false;
+        }
+        return valid;
     }
 }

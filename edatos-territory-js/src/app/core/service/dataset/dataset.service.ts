@@ -3,26 +3,29 @@ import { Injectable } from "@angular/core";
 
 import { Observable } from "rxjs";
 
-import { DatasetsDto } from "@app/core/model";
-import { instantiate } from "@app/core/service";
+import { Resources } from "@app/core/model";
+import { PropertiesService, instantiate } from "@app/core/service";
+
+export interface DatasetQuery {
+    territoryName: string;
+    limit: number;
+    offset: number;
+}
 
 @Injectable({
     providedIn: "root",
 })
 export class DatasetService {
-    public static REST_URL = "statistical-resources/v1.0";
+    public static REST_URL: string;
+    private static LIMIT: string = "100000";
 
-    constructor(public http: HttpClient) {}
-
-    getAllDatasets(): Observable<DatasetsDto> {
-        const headers = { "Content-Type": "application/json" };
-        const url = `${DatasetService.REST_URL}/datasets`;
-        return this.http.get(url, { headers }).pipe(instantiate(DatasetsDto));
+    constructor(private http: HttpClient, private propertiesService: PropertiesService) {
+        DatasetService.REST_URL =
+            this.propertiesService.getStatisticalResourcesExternalApiUrl() + "/v1.0";
     }
 
-    getDatasetsByTerritory(search: string): Observable<DatasetsDto> {
-        const headers = { "Content-Type": "application/json" };
-        const url = `${DatasetService.REST_URL}/datasets?query=GEOGRAPHIC_COVERAGE_TITLE ilike '${search}' and is_last_version eq 'true'`;
-        return this.http.get(url, { headers }).pipe(instantiate(DatasetsDto));
+    getDatasetsByTerritoryVariableElementId(variableElementId: string): Observable<Resources> {
+        const url = `${DatasetService.REST_URL}/resources.json?query=GEOCOV_VARELEM_ID eq '${variableElementId}' AND IS_LAST_VERSION EQ 'true'&limit=${DatasetService.LIMIT}`;
+        return this.http.get(url).pipe(instantiate(Resources));
     }
 }

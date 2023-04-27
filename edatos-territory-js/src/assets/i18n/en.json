@@ -1,4 +1,40 @@
 {
-    "languageUsed": "Used language",
-    "test": "Good morning"
+    "app": {
+        "name": "eTerritorios",
+        "page": {
+            "title": "Dataset finder by territory"
+        }
+    },
+    "error": {
+        "404": {
+            "detail": "Page not found",
+            "title": "Error 404"
+        }
+    },
+    "navbar": {
+        "autocomplete": {
+            "placeholder": "Find territories"
+        }
+    },
+    "territories": {
+        "header": {
+            "title": "Search datasets by territories"
+        }
+    },
+    "territory": {
+        "operations-tree": {
+            "empty": "There are no datasets containing information about this territory",
+            "title": "Datasets by statistical operation"
+        },
+        "page": {
+            "title": "Datasets - {{territory}}"
+        },
+        "type": {
+            "CCAA": "Autonomous Region",
+            "ISLA": "Island",
+            "MUN": "Municipality",
+            "PROV": "Province",
+            "COM": "Statistical region"
+        }
+    }
 }

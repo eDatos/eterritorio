@@ -1,0 +1,29 @@
+{
+    "endpoints": {
+        "cmetadata": {
+            "url": "https://estadisticas.arte-consultores.com/cmetadata/v1.0"
+        }
+    },
+    "keys": {
+        "organisation": "metamac.organisation",
+        "layout": {
+            "header": "metamac.app.style.header.url",
+            "footer": "metamac.app.style.footer.url"
+        },
+        "statisticalResources": {
+            "rest": {
+                "external": "metamac.statistical_resources.rest.external"
+            }
+        },
+        "statisticalOperations": {
+            "rest": {
+                "external": "metamac.statistical_operations.rest.external"
+            }
+        },
+        "visualizer": {
+            "web": {
+                "external": "metamac.portal.web.external.visualizer"
+            }
+        }
+    }
+}
