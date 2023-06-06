@@ -6,6 +6,7 @@
     },
     "keys": {
         "organisation": "metamac.organisation",
+        "languageCookieName": "metamac.internationalization.cookieId",
         "layout": {
             "header": "metamac.app.style.header.url",
             "footer": "metamac.app.style.footer.url"
