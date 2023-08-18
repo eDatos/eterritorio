@@ -31,6 +31,7 @@ export class HtmlService {
                 headers: { "Content-Type": "text/plain" },
                 responseType: "text",
                 params: queryParams,
+                withCredentials: true,
             });
         } else {
             console.error(`Invalid url: ${url}`);

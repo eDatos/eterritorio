@@ -74,6 +74,7 @@ export class PropertiesService {
                     visualizerWebUrl: this.requestMetadataKeyValue(props.keys.visualizer.web.external),
                     layoutHeaderUrl: this.requestMetadataKeyValue(props.keys.layout.header),
                     layoutFooterUrl: this.requestMetadataKeyValue(props.keys.layout.footer),
+                    languageCookieName: this.requestMetadataKeyValue(props.keys.languageCookieName),
                 };
 
                 // load all properties at the same time
@@ -121,5 +122,9 @@ export class PropertiesService {
 
     getOrganization() {
         return this.properties.organisation;
+    }
+
+    getLanguageCookieName() {
+        return this.properties.languageCookieName;
     }
 }
