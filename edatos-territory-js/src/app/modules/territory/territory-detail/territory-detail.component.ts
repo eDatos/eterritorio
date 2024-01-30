@@ -5,7 +5,7 @@ import { ActivatedRoute } from "@angular/router";
 import { TranslateService } from "@ngx-translate/core";
 import { finalize } from "rxjs";
 
-import { Resource } from "@app/core/model";
+import { ResourceWithStatisticalOperation } from "@app/core/model";
 import { DatasetService, PropertiesService } from "@app/core/service";
 
 @Component({
@@ -14,7 +14,7 @@ import { DatasetService, PropertiesService } from "@app/core/service";
     styleUrls: ["./territory-detail.component.scss"],
 })
 export class TerritoryDetailComponent implements OnInit {
-    resources?: Resource[];
+    resources?: ResourceWithStatisticalOperation[];
     loading = false;
     territoryId?: string;
 
@@ -38,7 +38,7 @@ export class TerritoryDetailComponent implements OnInit {
 
     init(territoryId: string) {
         this.loading = true;
-        this.territoryId = territoryId;       
+        this.territoryId = territoryId;
 
         this.datasetService.getDatasetsByTerritoryVariableElementId(this.territoryId)
         .pipe(finalize(() => (this.loading = false)))
