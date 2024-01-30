@@ -1,6 +1,6 @@
 import { Type } from "class-transformer";
 
-import {InternationalString, Kind, Resource, ResourceWithSubjectArea} from "@app/core/model";
+import {InternationalString, Kind, Resource} from "@app/core/model";
 
 export class StatisticalOperation {
     public id!: string;
