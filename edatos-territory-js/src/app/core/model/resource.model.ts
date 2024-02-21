@@ -13,23 +13,26 @@ export class Resource {
     getName(lang: string): string | null {
         return this.name.get(lang);
     }
-    
-    @Type(() => StatisticalOperation)
-    public statisticalOperation!: StatisticalOperation;
 
     public visualizerHtmlLink!: string;
-    
+
     @Type(() => SelfLink)
     public selfLink!: SelfLink;
 
     public kind = Kind.DATASET;
 }
 
+export class ResourceWithStatisticalOperation extends Resource {
+    @Type(() => StatisticalOperation)
+    public statisticalOperation!: StatisticalOperation;
+}
+
+export class ResourceWithSubjectArea extends Resource {
+    @Type(() => Resource)
+    public subjectArea!: Resource;
+}
 
 export class Resources {
-    @Type(() => Resource)
-    public resource!: Resource[];
-
     public kind!: Kind;
 
     public total!: number;
@@ -39,4 +42,14 @@ export class Resources {
     public selfLink!: string;
     public nextLink!: string;
     public lastLink!: string;
+}
+
+export class ResourcesWithStatisticalOperation extends Resources {
+    @Type(() => ResourceWithStatisticalOperation)
+    public resource!: ResourceWithStatisticalOperation[];
+}
+
+export class OperationsWithSubjectArea extends Resources {
+    @Type(() => ResourceWithSubjectArea)
+    public operation!: ResourceWithSubjectArea[];
 }

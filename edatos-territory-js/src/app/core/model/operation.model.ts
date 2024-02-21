@@ -1,6 +1,6 @@
 import { Type } from "class-transformer";
 
-import { InternationalString, Kind, SelfLink } from "@app/core/model";
+import {InternationalString, Kind, Resource} from "@app/core/model";
 
 export class StatisticalOperation {
     public id!: string;
@@ -11,12 +11,17 @@ export class StatisticalOperation {
 
     public kind = Kind.OPERATION;
 
+    @Type(() => Resource)
+    public subjectArea: Resource;
+
     getName(lang: string): string | null {
         return this.name.get(lang);
     }
-    constructor(id: string, urn: string, name: InternationalString) {
+
+    constructor(id: string, urn: string, name: InternationalString, subjectArea: Resource) {
         this.id = id;
         this.urn = urn;
         this.name = name;
+        this.subjectArea = subjectArea;
     }
 }
