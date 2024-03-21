@@ -48,6 +48,16 @@ export class ResourcesWithStatisticalOperation extends Resources {
     public resource!: ResourceWithStatisticalOperation[];
 }
 
+const Omit = <T, K extends keyof T>(Class: new () => T, keys: K[]): new () => Omit<T, (typeof keys)[number]> => Class;
+
+export class ResourcesWithStatisticalOperationNoHateoas extends Omit(ResourcesWithStatisticalOperation, [
+    "limit",
+    "offset",
+    "selfLink",
+    "nextLink",
+    "lastLink",
+]) {}
+
 export class OperationsWithSubjectArea extends Resources {
     @Type(() => ResourceWithSubjectArea)
     public operation!: ResourceWithSubjectArea[];

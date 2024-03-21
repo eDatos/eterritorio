@@ -3,7 +3,7 @@ import { Injectable } from "@angular/core";
 
 import { EMPTY, expand, Observable, reduce } from "rxjs";
 
-import { ResourcesWithStatisticalOperation } from "@app/core/model";
+import { ResourcesWithStatisticalOperation, ResourcesWithStatisticalOperationNoHateoas } from "@app/core/model";
 import { instantiate, PropertiesService } from "@app/core/service";
 
 @Injectable({
@@ -31,7 +31,7 @@ export class DatasetService {
     getAllDatasetsByTerritoryVariableElementId(
         variableElementId: string,
         offset = 0
-    ): Observable<ResourcesWithStatisticalOperation> {
+    ): Observable<ResourcesWithStatisticalOperationNoHateoas> {
         return this.getDatasetsByTerritoryVariableElementId(variableElementId, offset).pipe(
             expand((response) => {
                 if (response.offset + response.limit <= response.total) {
