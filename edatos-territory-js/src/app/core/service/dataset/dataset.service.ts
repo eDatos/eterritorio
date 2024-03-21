@@ -1,24 +1,63 @@
 import { HttpClient } from "@angular/common/http";
 import { Injectable } from "@angular/core";
 
-import { Observable } from "rxjs";
+import { EMPTY, expand, Observable, reduce } from "rxjs";
 
 import { ResourcesWithStatisticalOperation } from "@app/core/model";
-import { PropertiesService, instantiate } from "@app/core/service";
+import { instantiate, PropertiesService } from "@app/core/service";
 
 @Injectable({
     providedIn: "root",
 })
 export class DatasetService {
     public static REST_URL: string;
-    private static LIMIT: string = "100000";
+    private static LIMIT = 1000;
 
-    constructor(private http: HttpClient, private propertiesService: PropertiesService) {
+    constructor(
+        private http: HttpClient,
+        private propertiesService: PropertiesService
+    ) {
         DatasetService.REST_URL = this.propertiesService.getStatisticalResourcesExternalApiUrl() + "/v1.0";
     }
 
-    getDatasetsByTerritoryVariableElementId(variableElementId: string): Observable<ResourcesWithStatisticalOperation> {
-        const url = `${DatasetService.REST_URL}/resources.json?query=GEOCOV_VARELEM_ID eq '${variableElementId}' AND IS_LAST_VERSION EQ 'true'&limit=${DatasetService.LIMIT}`;
+    /**
+     * Returns all possible datasets that contains info about a territory.
+     *
+     * Note that this implies that multiple requests are made in order to
+     * overcome API pagination, so HATEOAS attributes in the response may
+     * not make sense and should not be used. E.g.: lastLink, selfLink,
+     * nextLink, offset, limit, etc.
+     */
+    getAllDatasetsByTerritoryVariableElementId(
+        variableElementId: string,
+        offset = 0
+    ): Observable<ResourcesWithStatisticalOperation> {
+        return this.getDatasetsByTerritoryVariableElementId(variableElementId, offset).pipe(
+            expand((response) => {
+                if (response.offset + response.limit <= response.total) {
+                    return this.getDatasetsByTerritoryVariableElementId(
+                        variableElementId,
+                        response.offset + DatasetService.LIMIT
+                    );
+                } else {
+                    return EMPTY;
+                }
+            }),
+            reduce((acc, response) => {
+                if (acc) {
+                    acc.resource = [...acc.resource, ...response.resource];
+                    return acc;
+                }
+                return response;
+            })
+        );
+    }
+
+    getDatasetsByTerritoryVariableElementId(
+        variableElementId: string,
+        offset = 0
+    ): Observable<ResourcesWithStatisticalOperation> {
+        const url = `${DatasetService.REST_URL}/resources.json?query=GEOCOV_VARELEM_ID eq '${variableElementId}' AND IS_LAST_VERSION EQ 'true'&limit=${DatasetService.LIMIT}&offset=${offset}`;
         return this.http.get(url).pipe(instantiate(ResourcesWithStatisticalOperation));
     }
 }

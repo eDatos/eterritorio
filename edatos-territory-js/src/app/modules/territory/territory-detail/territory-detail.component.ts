@@ -6,7 +6,7 @@ import { TranslateService } from "@ngx-translate/core";
 import { finalize } from "rxjs";
 
 import { ResourceWithStatisticalOperation } from "@app/core/model";
-import { DatasetService, PropertiesService } from "@app/core/service";
+import { DatasetService } from "@app/core/service";
 
 @Component({
     selector: "app-territory-info",
@@ -20,7 +20,6 @@ export class TerritoryDetailComponent implements OnInit {
 
     constructor(
         private route: ActivatedRoute,
-        private propertiesService: PropertiesService,
         private datasetService: DatasetService,
         private translateService: TranslateService,
         private title: Title
@@ -40,7 +39,7 @@ export class TerritoryDetailComponent implements OnInit {
         this.loading = true;
         this.territoryId = territoryId;
 
-        this.datasetService.getDatasetsByTerritoryVariableElementId(this.territoryId)
+        this.datasetService.getAllDatasetsByTerritoryVariableElementId(this.territoryId)
         .pipe(finalize(() => (this.loading = false)))
         .subscribe((resources) => {
             this.resources = resources.resource;

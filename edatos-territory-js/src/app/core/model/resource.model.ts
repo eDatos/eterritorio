@@ -3,7 +3,6 @@ import { Type } from "class-transformer";
 import { InternationalString, Kind, SelfLink, StatisticalOperation } from "@app/core/model";
 
 export class Resource {
-
     public id!: string;
     public urn!: string;
 
