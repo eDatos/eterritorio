@@ -24,9 +24,8 @@ export class DatasetService {
      * Returns all possible datasets that contains info about a territory.
      *
      * Note that this implies that multiple requests are made in order to
-     * overcome API pagination, so HATEOAS attributes in the response may
-     * not make sense and should not be used. E.g.: lastLink, selfLink,
-     * nextLink, offset, limit, etc.
+     * overcome API pagination, so HATEOAS attributes are not present in
+     * the response object of this method.
      */
     getAllDatasetsByTerritoryVariableElementId(
         variableElementId: string,
