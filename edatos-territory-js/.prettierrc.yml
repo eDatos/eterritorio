@@ -5,16 +5,20 @@ arrowParens: always
 bracketSpacing: true
 quoteProps: as-needed
 htmlWhitespaceSensitivity: ignore
-
+plugins:
+    - "@ianvs/prettier-plugin-sort-imports"
 importOrderParserPlugins:
     - "typescript"
     - "classProperties"
-    - "decorators-legacy"
+    - "decorators"
 importOrder:
     - "^@angular(/.*)?$"
+    - ""
     - "^primeng(/.*)?$"
+    - ""
     - <THIRD_PARTY_MODULES>
+    - ""
     - "^@app(/.*)?$"
+    - ""
     - "^(\\.).*$"
-importOrderSeparation: true
-importOrderSortSpecifiers: true
+importOrderTypeScriptVersion: 4.7.4
