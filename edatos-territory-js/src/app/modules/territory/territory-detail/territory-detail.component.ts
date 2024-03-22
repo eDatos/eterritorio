@@ -39,10 +39,11 @@ export class TerritoryDetailComponent implements OnInit {
         this.loading = true;
         this.territoryId = territoryId;
 
-        this.datasetService.getAllDatasetsByTerritoryVariableElementId(this.territoryId)
-        .pipe(finalize(() => (this.loading = false)))
-        .subscribe((resources) => {
-            this.resources = resources.resource;
-        });
+        this.datasetService
+            .getAllDatasetsByTerritoryVariableElementId(this.territoryId)
+            .pipe(finalize(() => (this.loading = false)))
+            .subscribe((resources) => {
+                this.resources = resources.resource;
+            });
     }
 }
