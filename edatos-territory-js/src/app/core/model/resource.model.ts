@@ -3,7 +3,6 @@ import { Type } from "class-transformer";
 import { InternationalString, Kind, SelfLink, StatisticalOperation } from "@app/core/model";
 
 export class Resource {
-
     public id!: string;
     public urn!: string;
 
@@ -47,6 +46,14 @@ export class Resources {
 export class ResourcesWithStatisticalOperation extends Resources {
     @Type(() => ResourceWithStatisticalOperation)
     public resource!: ResourceWithStatisticalOperation[];
+}
+
+export class ResourcesWithStatisticalOperationNoHateoas {
+    @Type(() => ResourceWithStatisticalOperation)
+    public resource!: ResourceWithStatisticalOperation[];
+
+    public kind!: Kind;
+    public total!: number;
 }
 
 export class OperationsWithSubjectArea extends Resources {
