@@ -13,10 +13,6 @@ import {
 } from "@app/core/model";
 import { OperationService } from "@app/core/service";
 
-
-
-
-
 @Component({
     selector: "app-operations-list",
     templateUrl: "./operations-list.component.html",
@@ -35,7 +31,10 @@ export class OperationsListComponent implements OnInit {
     tree: TreeNode[] = [];
     loading = false;
 
-    constructor(private translateService: TranslateService, private operationsService: OperationService) {}
+    constructor(
+        private translateService: TranslateService,
+        private operationsService: OperationService
+    ) {}
 
     private getAllOperationsFromDatasets(operationsWithSubjectArea: OperationsWithSubjectArea): StatisticalOperation[] {
         const operations: StatisticalOperation[] = [];
@@ -74,7 +73,8 @@ export class OperationsListComponent implements OnInit {
             .map((op) => op.subjectArea)
             .filter((res, index, self) => {
                 return self.findIndex((innerRes) => innerRes.id === res.id) === index;
-            });
+            })
+            .sort((a, b) => a.id.localeCompare(b.id) || 0);
         const firstLevel = [];
         for (const subjectArea of uniqueSubjectAreas) {
             const node: TreeNode = {
@@ -82,7 +82,9 @@ export class OperationsListComponent implements OnInit {
                 label: subjectArea.getName(this.translateService.currentLang) || undefined,
                 data: subjectArea,
                 leaf: false,
-                children: this.toTreeNodeList(operations.filter((op) => op.subjectArea.id === subjectArea.id)),
+                children: this.toTreeNodeList(operations.filter((op) => op.subjectArea.id === subjectArea.id)).sort(
+                    (a, b) => a.label!.localeCompare(b.label!) || 0
+                ),
             };
             firstLevel.push(node);
         }
